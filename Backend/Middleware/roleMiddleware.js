@@ -5,14 +5,14 @@
 const roleCheck = (requiredRole) =>  {
 
     return (req, res, next) => {
+        console.log("Decoded Role: ", req.user?.role)
         try {
             console.log('req.user', req.user)
-            console.log('Creating token with:', req.body, res.params)
             if (!req.body || !req.user.role) {
                 return res.status(401).json({ message: 'Unauthorized: No user info found' });
               }
 
-            const userRole = req.body?.role; // Extracted from JWT payload
+            const userRole = req.user?.role; // Extracted from JWT payload
             console.log("userRole", userRole)
 
             const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];

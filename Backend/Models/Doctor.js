@@ -7,30 +7,27 @@ const DoctorModel = dbConnection.define('Doctors', {
         autoIncrement: true,
         primaryKey: true,
     },
-    name: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-    },
-    specialization: {
+  
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'user_id'
+        },
+        onDelete: 'CASCADE'
+      },
+
+    specialty: {
         type: DataTypes.STRING(50),
         allowNull: false,
     },
-    email: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true, // Validates that it's a proper email
-        },
-    },
-    password: {
-        type: DataTypes.STRING(255), // Store hashed passwords
-        allowNull: false,
-    },
-    isFirstLogin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true, // Indicates whether the doctor needs to change their password
-    },
+  license_number: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+    unique: true
+  },
+
+  
     created_at: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW, // Automatically sets the timestamp
@@ -40,6 +37,7 @@ const DoctorModel = dbConnection.define('Doctors', {
     tableName: 'Doctors', // Specifies the table name in the database
 });
 
-module.exports = {DoctorModel};
+
+module.exports = DoctorModel;
 
 

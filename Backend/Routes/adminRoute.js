@@ -4,7 +4,8 @@ const { body } = require('express-validator');
 const { authenticateToken } = require('../Middleware/authMiddleware')
 const {roleCheck} = require('../Middleware/roleMiddleware')
 
-const {registerUser} = require("../Controllers/UserController")
+const {registerUser} = require("../Controllers/UserController");
+const { addDoctor } = require('../Controllers/AdminControllers');
 
 const adminRouter = app => {
 app.post('/register-admin',
@@ -22,21 +23,7 @@ app.get('/secure-data', authenticateToken, (req,res)=>{
         res.send('This is protected data')
     })
 
-    app.post('/create-doctor', authenticateToken, roleCheck('admin'),async (req,res)=>{
-    // Logic for adding doctor
-    
-    try {
-          
-            
-        } catch (error) {
-            console.log('error', error);
-
-            res.status(401).json({error: error})
-        }
-        
-
-        res.send("docter added successfully")
-    })
+    app.post('/add-doctor', authenticateToken, roleCheck(['admin']), addDoctor)
 }
 
 module.exports={
