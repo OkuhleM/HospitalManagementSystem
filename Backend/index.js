@@ -9,13 +9,9 @@ const session = require('express-session');
 const { doctorsRoute } = require("./Routes/doctorRoute");
 const {AuthenticateRoutes} =  require("./Routes/authRoute")
 const { adminRouter } = require("./Routes/adminRoute")
-// const request = require('request')
-// const AdminRoutes = require("./Routes/admin"
-
-// const {database} = require("./Config/server")
-
-const {DoctorModel} = require('./Models/Doctor');
-const { HasMany } = require("sequelize");
+const { addNursesRouter } = require("./Routes/nurseRoute")
+const { receptionist } = require("./Routes/receptionistRoute");
+const { patientsRoutes } = require("./Routes/patientRoute");
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.urlencoded({ extended: true }));
@@ -47,6 +43,9 @@ app.use(cors(
 AuthenticateRoutes(app)
 doctorsRoute(app)
 adminRouter(app)
+addNursesRouter(app)
+receptionist(app)
+patientsRoutes(app)
 // users(app)
 
 

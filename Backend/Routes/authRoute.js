@@ -1,7 +1,7 @@
 const { body } = require('express-validator');
 const {LogIn} = require("../Controllers/AuthController");
 // const {roleCheck} = require("../Middleware/roleMiddleware")
-const {roleCheck} = require("../Middleware/roleCheck")
+// const {roleCheck} = require("../Middleware/roleMiddleware")
 
 const {ChangePassword} = require("../Controllers/passwordChange");
 // const { authenticateToken } = require('../Middleware/authMiddleware');

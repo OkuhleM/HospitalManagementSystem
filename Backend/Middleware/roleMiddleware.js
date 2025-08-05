@@ -23,6 +23,11 @@ if(!allowedRoles.includes(userRole)){
     return res.status(403).json({ message: 'Access denied: Unauthorized role' });
 
 }
+console.log('receptionist Role: ', userRole )
+if (req.user.role !== 'receptionist') {
+    return res.status(403).json({ message: 'Only receptionists can perform this action' });
+  }
+
 next()
 
         } catch (error) {
