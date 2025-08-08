@@ -8,9 +8,9 @@ const roleCheck = (requiredRole) =>  {
         console.log("Decoded Role: ", req.user?.role)
         try {
             console.log('req.user', req.user)
-            if (!req.body || !req.user.role) {
-                return res.status(401).json({ message: 'Unauthorized: No user info found' });
-              }
+            // if (!req.body || !req.user.role) {
+            //     return res.status(401).json({ message: 'Unauthorized: No user info found' });
+            //   }
 
             const userRole = req.user?.role; // Extracted from JWT payload
             console.log("userRole", userRole)

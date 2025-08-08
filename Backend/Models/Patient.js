@@ -45,6 +45,15 @@ allowNull: false
       key: 'user_id'
     },
     allowNull: false
+  },
+  firstname: {
+    type: DataTypes.STRING(255),
+    allowNull: false
+  },
+  lastname: {
+    type: DataTypes.STRING(255),
+    allowNull: false
+
   }
 }, {
   timestamps: true,

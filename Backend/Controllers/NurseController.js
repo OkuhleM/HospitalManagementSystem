@@ -1,7 +1,7 @@
-const { User, NurseModel } = require('../Models/index');
+const { User, NurseModel } = require("../Models/index");
 
-const bcrypt = require("bcrypt")
-const {dbConnection } = require("../Config/database")
+const bcrypt = require("bcrypt");
+const {dbConnection } = require("../Config/database");
 
 const createNurse = async (req, res) => {
 
