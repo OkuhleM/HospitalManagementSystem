@@ -1,0 +1,88 @@
+
+-- / create the database
+CREATE DATABASE HospitalManagementSystem;
+
+--/ create tables
+
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(15) UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'doctor', 'staff', 'patient') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Patients (
+    patient_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL UNIQUE,
+    date_of_birth DATE NOT NULL,
+    Id_Number INT NOT NULL
+    medical_history TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+ALTER TABLE Patients ADD COLUMN `condition` TEXT NOT NULL AFTER Id_Number;
+ALTER TABLE Patients ADD COLUMN `condition` TEXT NOT NULL AFTER Id_Number;
+ALTER TABLE Doctors ADD COLUMN `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER license_number;
+
+ALTER TABLE Doctors ADD COLUMN `password` VARCHAR(255) DEFAULT  AFTER email;
+ALTER TABLE Doctors ADD COLUMN `isFirstLogin` BOOLEAN DEFAULT  AFTER password;
+
+
+
+CREATE TABLE Admissions (
+    admission_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    admitted_on DATETIME DEFAULT CURRENT_TIMESTAMP,
+    reason_for_admission TEXT NOT NULL,
+    room_number VARCHAR(10) NOT NULL,
+    status ENUM('admitted', 'discharged') DEFAULT 'admitted',
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Discharged (
+    discharge_id INT AUTO_INCREMENT PRIMARY KEY,
+    admission_id INT NOT NULL UNIQUE,
+    discharged_on DATETIME DEFAULT CURRENT_TIMESTAMP,
+    discharge_summary TEXT,
+    follow_up_date DATE,
+    FOREIGN KEY (admission_id) REFERENCES Admissions(admission_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    appointment_date DATETIME NOT NULL,
+    status ENUM('scheduled', 'completed', 'cancelled') DEFAULT 'scheduled',
+    notes TEXT,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Bills (
+    bill_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    admission_id INT,
+    appointment_id INT,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    payment_status ENUM('paid', 'unpaid') DEFAULT 'unpaid',
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (admission_id) REFERENCES Admissions(admission_id) ON DELETE CASCADE,
+    FOREIGN KEY (appointment_id) REFERENCES Appointments(appointment_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Doctor_Patient (
+    doctor_patient_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    assigned_on DATETIME DEFAULT CURRENT_TIMESTAMP,
+    is_current BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id) ON DELETE CASCADE
+);
