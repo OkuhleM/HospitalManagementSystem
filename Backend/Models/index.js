@@ -2,7 +2,7 @@ const User = require('./User');
 const DoctorModel = require('./Doctor');
 const NurseModel = require("../Models/Nurses")
 const Receptionist = require("../Models/Receptionist")
-const PatientsModel = require("../Models/Patient")
+const wardModel = require("../Models/Wards")
 
 
 // Define associations
@@ -10,6 +10,7 @@ User.hasOne(DoctorModel, { foreignKey: 'user_id',
     as: 'doctor',
   onDelete: 'CASCADE'
  });
+
 DoctorModel.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
 User.hasOne(NurseModel, {
@@ -26,14 +27,16 @@ User.hasOne(Receptionist, {
 });
 Receptionist.belongsTo(User, { foreignKey: 'user_id', as: 'user'})
 
-// User.hasMany(PatientsModel, { foreignKey: 'created_by',
-//   as: 'patient',
-// onDelete: 'CASCADE'
-// });
-// PatientsModel.belongsTo(User, { foreignKey: 'created_by', as: 'receptionist'})
 
-User.hasMany(PatientsModel, { foreignKey: 'created_by', as: 'createdPatients' });
-PatientsModel.belongsTo(User, { foreignKey: 'created_by', as: 'creator' });
+// wardModel.hasMany(NurseModel, { foreignKey: 'ward_id', as: 'nurses' });
+// NurseModel.belongsTo(wardModel, { foreignKey: 'ward_id', as: 'ward' });
+
+// wardModel.hasMany(DoctorModel, { foreignKey: 'ward_id', as:'doctor'});
+// DoctorModel.belongsTo(wardModel, { foreignKey: 'ward_id', as: 'ward'})
+
+
+// DoctorModel.hasMany(NurseModel, { foreignKey: 'assigned_doctor_id', as: 'assignedNurses' });
+// NurseModel.belongsTo(DoctorModel, { foreignKey: 'assigned_doctor_id', as: 'assignedDoctor' });
 
 
 module.exports = {
@@ -41,5 +44,6 @@ module.exports = {
   DoctorModel,
   NurseModel,
   Receptionist,
-  PatientsModel
+ 
+  wardModel
 };

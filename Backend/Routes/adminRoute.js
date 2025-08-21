@@ -1,29 +1,16 @@
-// const {dbConnection} = require('../Config/database')
-const { body } = require('express-validator');
 
 const { authenticateToken } = require('../Middleware/authMiddleware')
 const {roleCheck} = require('../Middleware/roleMiddleware')
 
-const {registerUser} = require("../Controllers/UserController");
-const { addDoctor } = require('../Controllers/AdminControllers');
+const {registerUser, getAllUsers, getSingleUser} = require("../Controllers/UserController");
 
 const adminRouter = app => {
-app.post('/register-admin',
-
-    [
-        body('email').isEmail(),
-        body('password').isLength({ min: 6 }),
-        body('role').equals('admin')
-      ],
-      registerUser
-    );
+app.post('/register-admin',registerUser);
 
 
-app.get('/secure-data', authenticateToken, (req,res)=>{
-        res.send('This is protected data')
-    })
+app.get('/get-all-users',authenticateToken, roleCheck(['admin']), getAllUsers)
+app.get('/get-single-user/:email', authenticateToken, roleCheck(['admin']), getSingleUser)
 
-    app.post('/add-doctor', authenticateToken, roleCheck(['admin']), addDoctor)
 }
 
 module.exports={

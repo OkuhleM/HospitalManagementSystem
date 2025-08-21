@@ -1,7 +1,8 @@
-const { DataTypes } = require('sequelize');
-const { dbConnection } = require('../Config/database');
+const {DataTypes} = require("sequelize");
+const {dbConnection} = require("../Config/database")
 
-const PatientsModel = dbConnection.define('Patient', {
+const PatientsModel = dbConnection.define('Patients', {
+
   patient_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -18,9 +19,10 @@ const PatientsModel = dbConnection.define('Patient', {
     unique: true
   },
  
-  condition:{
+  medical_condition:{
 type: DataTypes.TEXT,
 allowNull: false
+
   },
   medical_history:{
 type: DataTypes.TEXT,
@@ -38,14 +40,7 @@ allowNull: false
     type: DataTypes.STRING,
     allowNull: true
   },
-  created_by: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'Users',
-      key: 'user_id'
-    },
-    allowNull: false
-  },
+
   firstname: {
     type: DataTypes.STRING(255),
     allowNull: false

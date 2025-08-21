@@ -58,4 +58,35 @@ console.log("error creatng doctor: ", error)
     }
 }
 
-module.exports = {addDoctor}
+const getAllDoctors = async (req, res) => {
+
+try{
+
+  const doctor = await DoctorModel.findAll();
+  console.log('doctor', doctor)
+
+  res.status(200).json(doctor);
+
+} catch(error) {
+
+console.error('error', error);
+res.status(500).json({message:"error finding doctors",error})
+}
+}
+
+const getSingleDoctor = async (req, res) => {
+
+try {
+      const { license_number } = req.params;
+      const foundDoctor = await DoctorModel.findOne({ license_number: `${license_number}` });
+      console.log(foundDoctor)
+  res.status(200).json({foundDoctor});
+
+} catch (error) {
+  console.error('error', error);
+res.status(500).json({message:"error finding patients",error})
+}
+
+}
+
+module.exports = {addDoctor, getAllDoctors, getSingleDoctor}

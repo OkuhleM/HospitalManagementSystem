@@ -7,8 +7,11 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 const dbConnection = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
     host: process.env.HOST,
-    dialect: 'mysql',
+    // port: process.env.DB_PORT || 3306,
+
+    dialect: 'mysql'
 });
+
 
 (async () => {
   try {

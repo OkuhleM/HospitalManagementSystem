@@ -1,43 +1,15 @@
-const {dbConnection} = require('../Config/database')
-const {DoctorModel} = require('../Models/Doctor')
-const bcrypt = require('bcrypt')
+const { addDoctor, getAllDoctors, getSingleDoctor } = require('../Controllers/AdminControllers');
+const {authenticateToken} = require('../Middleware/authMiddleware');
+const { roleCheck } = require('../Middleware/roleMiddleware');
 
 
 
-const doctorsRoute= app => {
+const doctorRouter = app => {
 
-app.post('/admin/create-doctor', async (req,res)=>{
-    
-    const {doctor_id,name,email,password,specialty,license_number,created_at }=req.body
-    try {
-
-if( !name || !email || !password || !specialty || !license_number || !created_at) {
-       return res.status(400).send("All Fields are required!!");
-       
-    }
-
-    const hashPassword = await bcrypt.hash(password, 10)
-
-    const newDoctor = await DoctorModel.create({
-        doctor_id,
-        name,
-        email,
-        password: hashPassword,
-        specialty,
-        license_number,
-        created_at
-    });
-    res.status(201).json({ message: 'Doctor added successfully', newDoctor});
-
-
-    } catch (error) {
-        console.log('error', error)
-        res.status(500).json({ message: 'Failed to add doctor' });
-
-    }
-})
-
+    app.post('/add-doctor', authenticateToken, roleCheck(['admin']), addDoctor)
+    app.get('/get-all-doctors', authenticateToken, roleCheck(['admin']), getAllDoctors)
+    app.get('/get-single-doctor/:license_number', authenticateToken, roleCheck(['admin']), getSingleDoctor)
 
 }
 
-module.exports = {doctorsRoute}
+module.exports = {doctorRouter}

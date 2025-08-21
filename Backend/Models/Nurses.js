@@ -6,6 +6,7 @@ const NurseModel = dbConnection.define('Nurse', {
       type: DataTypes.INTEGER, 
       autoIncrement: true, 
       primaryKey: true },
+
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -15,19 +16,8 @@ const NurseModel = dbConnection.define('Nurse', {
         },
         onDelete: 'CASCADE'
       },
-    assignment: { 
-      type: DataTypes.STRING(255),
-        allowNull: false,
 
-     }, 
-    assigned_to: {
-        type: DataTypes.ENUM("doctor", "pharmacy"),
-        allowNull: false,
-      },
-      shift_date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      }
+      
   }, {
     timestamps: false,
     tableName: 'Nurses'

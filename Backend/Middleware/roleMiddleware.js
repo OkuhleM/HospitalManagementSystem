@@ -1,32 +1,38 @@
-
-// const {authenticateToken} = require("./authMiddleware")
-
-
 const roleCheck = (requiredRole) =>  {
 
     return (req, res, next) => {
-        console.log("Decoded Role: ", req.user?.role)
-        try {
-            console.log('req.user', req.user)
-            // if (!req.body || !req.user.role) {
-            //     return res.status(401).json({ message: 'Unauthorized: No user info found' });
-            //   }
 
-            const userRole = req.user?.role; // Extracted from JWT payload
+        console.log("Decoded Role: ", req.user?.role)
+
+        try {
+
+            console.log('req.user', req.user)
+            
+          
+
+            const userRole = req.user?.role; 
             console.log("userRole", userRole)
 
-            const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+
+              if (!userRole) {
+        return res.status(401).json({ message: 'Not authenticated' });
+      }  
+
+      const rawUserRole= String(userRole).trim().toLowerCase();
+
+       let allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+      allowedRoles = allowedRoles
+        .flatMap(r => String(r).split(','))   // split CSV if needed
+        .map(r => r.trim().toLowerCase())     // trim + lowercase
+        .filter(Boolean); 
 
 
-if(!allowedRoles.includes(userRole)){
+if(!allowedRoles.includes(rawUserRole)){
     console.log('requiredRole,userRole', requiredRole,userRole)
-    return res.status(403).json({ message: 'Access denied: Unauthorized role' });
+    return res.status(403).json({ message: 'Access denied: Unauthorized role', requiredRole:allowedRoles, rawUserRole });
 
 }
-console.log('receptionist Role: ', userRole )
-if (req.user.role !== 'receptionist') {
-    return res.status(403).json({ message: 'Only receptionists can perform this action' });
-  }
+
 
 next()
 

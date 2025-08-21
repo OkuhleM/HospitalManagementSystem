@@ -32,6 +32,18 @@ const DoctorModel = dbConnection.define('Doctors', {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW, // Automatically sets the timestamp
     },
+       ward_id:  {
+type: DataTypes.INTEGER,
+allowNull: false,
+references: {
+  model: 'wardModel',
+  key: 'ward_id'
+}
+      },
+notes: {
+  type: DataTypes.TEXT,
+  allowNull: false
+}
 }, {
     timestamps: false, // Disables Sequelize's automatic timestamps (if you use your own fields)
     tableName: 'Doctors', // Specifies the table name in the database

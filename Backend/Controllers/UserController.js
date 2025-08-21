@@ -8,10 +8,6 @@ const registerUser = async (req,res) => {
 
     const {first_name, last_name,email, phone, password,role} = req.body
 
-//     const validRoles = ['doctor', 'nurse', 'receptionist', 'matron']; // admin can't create another admin
-//   if (!validRoles.includes(role)) {
-//     return res.status(400).json({ message: 'Invalid role' });
-//   }
 
     try {
 
@@ -48,4 +44,45 @@ const registerUser = async (req,res) => {
 
 }
 
-module.exports = { registerUser}
+
+const getAllUsers= async (req, res) => {
+
+try{
+
+  const Users = await User.findAll();
+  console.log('user: ', Users)
+
+  res.status(200).json({Users});
+
+} catch(error) {
+
+console.error('error', error);
+res.status(500).json({message:"error finding users",error})
+}
+}
+
+const getSingleUser = async (req, res) => {
+ 
+  const  {email} = req.params
+
+    try {
+
+        const foundUser = await User.findOne({ 
+            where: {email}
+        })
+
+        if (!foundUser) {
+  return res.status(404).json({ message: "User not found" });
+}
+        console.log("found User: ", foundUser)
+
+         res.status(200).json({message: "found user", foundUser})
+
+
+    } catch (error) {
+     console.error(error)   
+     res.status(500).json({error: error, message: "error finding User"})
+    }
+}
+
+module.exports = { registerUser, getAllUsers, getSingleUser}

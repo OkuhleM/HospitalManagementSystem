@@ -6,7 +6,7 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const session = require('express-session');
-const { doctorsRoute } = require("./Routes/doctorRoute");
+const { doctorRouter} = require("./Routes/doctorRoute");
 const {AuthenticateRoutes} =  require("./Routes/authRoute")
 const { adminRouter } = require("./Routes/adminRoute")
 const { addNursesRouter } = require("./Routes/nurseRoute")
@@ -41,7 +41,7 @@ app.use(cors(
   
 
 AuthenticateRoutes(app)
-doctorsRoute(app)
+doctorRouter(app)
 adminRouter(app)
 addNursesRouter(app)
 receptionist(app)
