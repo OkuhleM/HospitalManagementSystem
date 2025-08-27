@@ -1,4 +1,4 @@
-const { addDoctor, getAllDoctors, getSingleDoctor } = require('../Controllers/AdminControllers');
+const { addDoctor, getAllDoctors, getSingleDoctor } = require('../Controllers/DoctorController');
 const {authenticateToken} = require('../Middleware/authMiddleware');
 const { roleCheck } = require('../Middleware/roleMiddleware');
 

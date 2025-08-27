@@ -12,6 +12,7 @@ const { adminRouter } = require("./Routes/adminRoute")
 const { addNursesRouter } = require("./Routes/nurseRoute")
 const { receptionist } = require("./Routes/receptionistRoute");
 const { patientsRoutes } = require("./Routes/patientRoute");
+const {assignNurse } = require('./Routes/nurseAssignmentRoute')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +47,7 @@ adminRouter(app)
 addNursesRouter(app)
 receptionist(app)
 patientsRoutes(app)
-// users(app)
+assignNurse(app)
 
 
 app.get('/', function (req, res) {
