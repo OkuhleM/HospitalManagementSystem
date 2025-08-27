@@ -4,6 +4,7 @@ const {
   DoctorModel,
   User,
   nurseAssignment,
+  AuditLog,
 } = require("../Models/index");
 
 const { dbConnection } = require("../Config/database");
@@ -77,5 +78,25 @@ const assignNursesToWorkStations = async (req, res) => {
   }
 };
 
+nurseAssignment.addHook("afterCreate", async (assignment, options) => {
+  await AuditLog.create({
+    user_id: options.user_id || null,
+    action: "ASSIGN_NURSE",
+    target_table: "nurse_assignments",
+    target_id: assignment.assignment_id,
+    new_value: JSON.stringify(assignment.toJSON()),
+  });
+});
+
+nurseAssignment.addHook("afterUpdate", async (assignment, options) => {
+  await AuditLog.create({
+    user_id: options.user_id || null,
+    action: "UPDATE_ASSIGNMENT",
+    target_table: "nurse_assignments",
+    target_id: assignment.assignment_id,
+    new_value: JSON.stringify(assignment.toJSON()),
+    old_value: JSON.stringify(options.fieldsBeforeUpdate || {}),
+  });
+});
 
 module.exports = { assignNursesToWorkStations };

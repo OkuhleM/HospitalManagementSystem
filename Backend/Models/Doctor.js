@@ -11,7 +11,7 @@ const DoctorModel = dbConnection.define('Doctors', {
     user_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'Users',
+          model: 'User',
           key: 'user_id'
         },
         onDelete: 'CASCADE'
