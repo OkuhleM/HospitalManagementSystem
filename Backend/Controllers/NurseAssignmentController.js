@@ -25,19 +25,18 @@ const assignNursesToWorkStations = async (req, res) => {
       notes,
     } = req.body;
 
-   const nurse = await NurseModel.findOne({
-      include: [{ model: User, as: "users", where: { email: email } }]
+    const nurse = await NurseModel.findOne({
+      include: [{ model: User, as: "users", where: { email: email } }],
     });
     if (!nurse) return res.status(404).json({ error: "Nurse not found" });
 
-      let doctor = null;
+    let doctor = null;
     if (assigned_to_type === "doctor") {
       doctor = await DoctorModel.findOne({
-        include: [{ model: User, as: "users", where: { email: doctor_email } }]
+        include: [{ model: User, as: "users", where: { email: doctor_email } }],
       });
       if (!doctor) return res.status(404).json({ error: "Doctor not found" });
     }
-
 
     if (assigned_to_type === "ward" && assigned_ward_id) {
       const ward = await wardModel.findByPk(assigned_ward_id, {
@@ -52,9 +51,9 @@ const assignNursesToWorkStations = async (req, res) => {
     const newAssignedNurse = await nurseAssignment.create(
       {
         nurse_id: nurse.nurse_id,
-        assigned_by_user_id: req.user.id,
+        assigned_by_user_id: req.user.user_id,
         assigned_to_type,
-        assigned_doctor_id: doctor ? doctor.id : null,
+        assigned_doctor_id: doctor ? doctor.doctor_id : null,
         assigned_ward_id,
         email,
         doctor_email,
