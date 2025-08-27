@@ -77,4 +77,5 @@ const assignNursesToWorkStations = async (req, res) => {
   }
 };
 
+
 module.exports = { assignNursesToWorkStations };
