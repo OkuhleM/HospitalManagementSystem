@@ -7,6 +7,8 @@ const nurseAssignment = require("../Models/NurseAssignmentsModels");
 const AuditLog = require("./AuditLogsModel");
 const AppointmentModel = require("./Appointment")
 const PatientModel = require("./Patient")
+const Billings = require("./BillingModel")
+
 // User Profile
 User.hasOne(DoctorModel, {
   foreignKey: "user_id",
@@ -75,6 +77,9 @@ NurseModel.hasMany(AppointmentModel, { foreignKey: "nurse_id" });
 AppointmentModel.belongsTo(wardModel, { foreignKey: "ward_id" });
 wardModel.hasMany(AppointmentModel, { foreignKey: "ward_id" });
 
+Billings.belongsTo(PatientModel, { foreignKey: "patient_id"});
+PatientModel.hasOne(Billings, {foreignKey: "patient_id"})
+
 module.exports = {
   User,
   DoctorModel,
@@ -83,5 +88,6 @@ module.exports = {
   nurseAssignment,
   wardModel,
   AuditLog,
-  AppointmentModel
+  AppointmentModel,
+  Billings
 };
