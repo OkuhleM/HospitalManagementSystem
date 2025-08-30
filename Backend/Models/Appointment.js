@@ -36,6 +36,15 @@ const AppointmentModel = dbConnection.define(
       onDelete: "CASCADE",
     },
 
+    scheduled_by: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: "user_id",
+      },
+    },
+
     notes: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -43,36 +52,42 @@ const AppointmentModel = dbConnection.define(
     diagnosis: {
       type: DataTypes.TEXT,
       allowNull: false,
-     
     },
     treatment: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
     prescription: {
-        type: DataTypes.TEXT,
-        allowNull: false
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
     ward_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: "wardModel",
-            key: "ward_id"
-        },
-        onDelete: "CASCADE"
+      type: DataTypes.INTEGER,
+      references: {
+        model: "wardModel",
+        key: "ward_id",
+      },
+      onDelete: "CASCADE",
     },
     appointment_datetime: {
-        type: DataTypes.DATE,
-        allowNull: false
+      type: DataTypes.DATE,
+      allowNull: false,
     },
     status: {
-        type: DataTypes.ENUM('scheduled', 'checked_in', 'in_consultation', 'completed', 'cancelled', 'no_show'),
-        allowNull: true
-    }
+      type: DataTypes.ENUM(
+        "scheduled",
+        "checked_in",
+        "in_consultation",
+        "completed",
+        "cancelled",
+        "no_show"
+      ),
+      allowNull: true,
+    },
   },
   {
-    timestamps: false, // Disables Sequelize's automatic timestamps (if you use your own fields)
-    tableName: "appointments", // Specifies the table name in the database
+    timestamps: false,
+    tableName: "appointments",
   }
 );
 

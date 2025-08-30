@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
 const { dbConnection } = require("../Config/database");
-const pharmacy = require("./PharmacyModel");
 
 const medication = dbConnection.define(
   "medications",
