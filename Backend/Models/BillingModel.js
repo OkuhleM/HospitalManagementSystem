@@ -13,7 +13,7 @@ const Billings = dbConnection.define(
     patient_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "PatientsModel",
+        model: "patients",
         key: "patient_id",
       },
       onDelete: "CASCADE",

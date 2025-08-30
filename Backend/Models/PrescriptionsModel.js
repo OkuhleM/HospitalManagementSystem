@@ -13,7 +13,7 @@ const prescription = dbConnection.define(
     patient_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "PatientsModel",
+        model: "patients",
         key: "patient_id",
       },
       onDelete: "CASCADE",
@@ -21,7 +21,7 @@ const prescription = dbConnection.define(
     doctor_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "DoctorModel",
+        model: "Doctors",
         key: "doctor_id",
       },
       onDelete: "CASCADE",

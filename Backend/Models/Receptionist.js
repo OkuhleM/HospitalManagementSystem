@@ -14,7 +14,7 @@ const Receptionist = dbConnection.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "User",
+        model: "Users",
         key: "user_id",
       },
       onDelete: "CASCADE",

@@ -13,7 +13,7 @@ const nurseAssignment = dbConnection.define(
     nurse_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "NurseModel",
+        model: "Nurses",
         key: "nurse_id",
       },
       onDelete: "CASCADE",
@@ -36,7 +36,7 @@ const nurseAssignment = dbConnection.define(
     assigned_to_doctor_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "DoctorModel",
+        model: "Doctors",
         key: "doctor_id",
       },
       onDelete: "CASCADE",
@@ -45,7 +45,7 @@ const nurseAssignment = dbConnection.define(
     assigned_ward_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "wardModel",
+        model: "wards",
         key: "ward_id",
       },
       onDelete: "CASCADE",

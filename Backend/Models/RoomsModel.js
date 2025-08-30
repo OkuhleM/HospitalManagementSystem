@@ -13,7 +13,7 @@ const rooms = dbConnection.define(
     ward_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "wardModel",
+        model: "wards",
         key: "ward_id"
       },
       onDelete: "CASCADE"

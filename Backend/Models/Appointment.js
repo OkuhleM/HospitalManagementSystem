@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { dbConnection } = require("../Config/database");
+const {AuditLog} = require('./AuditLogsModel')
 
 const AppointmentModel = dbConnection.define(
   "Appointments",
@@ -13,7 +14,7 @@ const AppointmentModel = dbConnection.define(
     patient_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "PatientsModel",
+        model: "patients",
         key: "patient_id",
       },
       onDelete: "CASCADE",
@@ -22,7 +23,7 @@ const AppointmentModel = dbConnection.define(
     doctor_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "DoctorModel",
+        model: "Doctors",
         key: "doctor_id",
       },
       onDelete: "CASCADE",
@@ -30,7 +31,7 @@ const AppointmentModel = dbConnection.define(
     nurse_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "NurseModel",
+        model: "Nurses",
         key: "nurse_id",
       },
       onDelete: "CASCADE",
@@ -40,7 +41,7 @@ const AppointmentModel = dbConnection.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: User,
+        model: "Users",
         key: "user_id",
       },
     },
@@ -64,7 +65,7 @@ const AppointmentModel = dbConnection.define(
     ward_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "wardModel",
+        model: "wards",
         key: "ward_id",
       },
       onDelete: "CASCADE",
@@ -88,7 +89,23 @@ const AppointmentModel = dbConnection.define(
   {
     timestamps: false,
     tableName: "appointments",
-  }
+  },
+
 );
+AppointmentModel.afterCreate(async (appointment, options) => {
+  await AuditLog.create({
+    user_id: appointment.scheduled_by,
+    action: "CREATE_APPOINTMENT",
+    details: `Appointment scheduled for patient_id=${appointment.patient_id} with doctor_id=${appointment.doctor_id}`,
+  });
+});
+
+AppointmentModel.afterUpdate(async (appointment, options) => {
+  await AuditLog.create({
+    user_id: appointment.scheduled_by,
+    action: "UPDATE_APPOINTMENT",
+    details: `Appointment updated (ID=${appointment.id})`,
+  });
+});
 
 module.exports = AppointmentModel;
