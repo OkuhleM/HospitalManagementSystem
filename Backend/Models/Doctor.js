@@ -33,17 +33,18 @@ const DoctorModel = dbConnection.define(
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW, // Automatically sets the timestamp
     },
-    ward_id: {
+   
+    notes: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+     ward_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: "wards",
         key: "ward_id",
       },
-    },
-    notes: {
-      type: DataTypes.TEXT,
-      allowNull: false,
     },
   },
   {

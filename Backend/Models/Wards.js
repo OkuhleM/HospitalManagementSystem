@@ -9,9 +9,16 @@ const wardModel = dbConnection.define(
       autoIncrement: true,
       primaryKey: true,
     },
-
+name: {
+type: DataTypes.STRING(255),
+allowNull: false
+},
+capacity: {
+type: DataTypes.INTEGER,
+allowNull: false
+},
     type: {
-      type: DataTypes.ENUM("pharmacy", "icu", "opd", "other"),
+      type: DataTypes.ENUM("ward","pharmacy", "icu", "opd", "other"),
       allowNull: true,
     },
   },

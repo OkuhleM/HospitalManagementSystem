@@ -28,14 +28,6 @@ const AppointmentModel = dbConnection.define(
       },
       onDelete: "CASCADE",
     },
-    nurse_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Nurses",
-        key: "nurse_id",
-      },
-      onDelete: "CASCADE",
-    },
 
     scheduled_by: {
       type: DataTypes.INTEGER,
@@ -64,6 +56,7 @@ const AppointmentModel = dbConnection.define(
     },
     ward_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: "wards",
         key: "ward_id",
