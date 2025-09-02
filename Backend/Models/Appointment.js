@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { dbConnection } = require("../Config/database");
-const {AuditLog} = require('./AuditLogsModel')
+const AuditLog = require('./AuditLogsModel')
 
 const AppointmentModel = dbConnection.define(
   "Appointments",

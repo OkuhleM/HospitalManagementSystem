@@ -75,8 +75,8 @@ PatientModel.hasMany(AppointmentModel, { foreignKey: "patient_id" });
 AppointmentModel.belongsTo(DoctorModel, { foreignKey: "doctor_id" });
 DoctorModel.hasMany(AppointmentModel, { foreignKey: "doctor_id" });
 
-AppointmentModel.belongsTo(NurseModel, { foreignKey: "nurse_id" });
-NurseModel.hasMany(AppointmentModel, { foreignKey: "nurse_id" });
+// AppointmentModel.belongsTo(NurseModel, { foreignKey: "nurse_id" });
+// NurseModel.hasMany(AppointmentModel, { foreignKey: "nurse_id" });
 
 AppointmentModel.belongsTo(wardModel, { foreignKey: "ward_id" });
 wardModel.hasMany(AppointmentModel, { foreignKey: "ward_id" });

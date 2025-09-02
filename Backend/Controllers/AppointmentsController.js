@@ -1,7 +1,7 @@
 const {
   AppointmentModel,
   DoctorModel,
- 
+ User,
   wardModel,
 } = require("../Models/index");
 const PatientModel = require('../Models/Patient')
@@ -38,7 +38,7 @@ const createAppointments = async (req, res) => {
       diagnosis,
       treatment,
       prescription,
-      ward_id: ward / ward_id,
+      ward_id: ward.ward_id,
       appointment_datetime,
       status,
     });
