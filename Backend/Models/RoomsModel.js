@@ -14,9 +14,21 @@ const rooms = dbConnection.define(
       type: DataTypes.INTEGER,
       references: {
         model: "wards",
-        key: "ward_id"
+        key: "ward_id",
       },
-      onDelete: "CASCADE"
+      onDelete: "CASCADE",
+    },
+    room_number: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    bed_count: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    occupied_beds: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {

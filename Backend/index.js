@@ -15,6 +15,7 @@ const { patientsRoutes } = require("./Routes/patientRoute");
 const { assignNurse } = require("./Routes/nurseAssignmentRoute");
 const { appointments } = require("./Routes/appointmentsRoute");
 const { wards } = require("./Routes/wardRoutes");
+const { roomsRouter } = require("./Routes/roomsRouter");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -51,6 +52,7 @@ patientsRoutes(app);
 assignNurse(app);
 appointments(app);
 wards(app)
+roomsRouter(app)
 
 app.get("/", function (req, res) {
   res.send("HSM"); // This will serve your request to '/'.

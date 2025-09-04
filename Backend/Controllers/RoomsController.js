@@ -1,21 +1,39 @@
-const { rooms, wardModel, rooms } = require("../Models/index");
+const { rooms, wardModel } = require("../Models/index");
 
 const roomsController = async (req, res) => {
   try {
-    const { ward_id, room_number, bed_count, occupied_beds } = req.body;
+    const { name, capacity, ward_id, room_number, bed_count, occupied_beds } = req.body;
 
-    const ward = await wardModel.findByPk(ward_id);
+    const ward = await wardModel.findOne({where: { name: name}});
     if (!ward) return res.status(404).json({ error: "Ward not found" });
 
-    const availableRooms = await rooms.create({
+
+ const existingRooms = await rooms.findAll({
+      where: { ward_id: ward.ward_id },
+    });
+
+    const totalBedsInWard = existingRooms.reduce(
+      (sum, room) => sum + room.bed_count,
+      0
+    );
+
+      if (ward.capacity && totalBedsInWard + bed_count > ward.capacity) {
+      return res.status(400).json({
+        error: `Cannot add room. Ward '${ward.name}' capacity is ${ward.capacity}, current beds = ${totalBedsInWard}, new room adds ${bed_count}.`,
+      });
+    }
+
+
+
+    const createRooms = await rooms.create({
       ward_id: ward.ward_id,
       room_number,
       bed_count,
       occupied_beds,
     });
 
-    console.log("newRoom: ", availableRooms);
-    res.status(200).json({ message: "available rooms", availableRooms });
+    console.log("newRoom: ", createRooms);
+    res.status(200).json({ message: "available rooms", createRooms });
   } catch (error) {
     console.error(error);
 
