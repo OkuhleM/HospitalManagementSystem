@@ -18,36 +18,6 @@ const createNurse = async (req, res) => {
             const hashedPassword = await bcrypt.hash(password, 10);
 
 
-    //          const validWardTypes = ['ward','pharmacy','icu','opd','other'];
-
-    // if (!validWardTypes.includes(type)) {
-
-    //   return res.status(400).json({ message: `type must be one of: ${validWardTypes.join(', ')}` });
-    // }
-
-
-    // const toPharmacy = (assigned_to_pharmacy === true || assigned_to_pharmacy === 'true' || assigned_to_pharmacy === 1 || assigned_to_pharmacy === '1');
-
-
-    // if ((doctor_id && toPharmacy) || (!doctor_id && !toPharmacy)) {
-    //   return res.status(400).json({ message: 'Pick exactly one: provide doctor_id OR set assigned_to_pharmacy=true' });
-    // }
-
-//  if (doctor_id) {
-//       const doctor = await DoctorModel.findByPk(doctor_id, {transaction:transaction});
-//       console.log("doctor: ", doctor)
-//       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
-//     }
-
-// const [ward] = await wardModel.findOrCreate({
-//       where: dbConnection.where(
-//         dbConnection.fn('LOWER', dbConnection.col('type')),
-//         dbConnection.fn('LOWER', type.trim())
-//       ),
-//       defaults: { type },
-//       transaction
-//     });
-
 
     const newUser = await User.create({
         first_name,
