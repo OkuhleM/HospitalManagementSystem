@@ -19,7 +19,7 @@ const roomsController = async (req, res) => {
 
       if (ward.capacity && totalBedsInWard + bed_count > ward.capacity) {
       return res.status(400).json({
-        error: `Cannot add room. Ward '${ward.name}' capacity is ${ward.capacity}, current beds = ${totalBedsInWard}, new room adds ${bed_count}.`,
+        error: `Cannot add room. Ward '${ward.name}' capacity is ${ward.capacity}, occupied beds = ${totalBedsInWard}, new room adds ${bed_count}.`,
       });
     }
 
