@@ -19,7 +19,7 @@ const pharmacy = dbConnection.define(
       allowNull: false,
     },
     contact: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(15),
       allowNull: false,
     },
   },

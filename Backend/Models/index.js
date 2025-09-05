@@ -109,4 +109,5 @@ module.exports = {
   rooms,
   medication,
   prescription,
+  pharmacy
 };
