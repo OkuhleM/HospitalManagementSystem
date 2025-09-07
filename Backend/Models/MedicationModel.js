@@ -22,14 +22,7 @@ const medication = dbConnection.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    pharmacy_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "pharmacy",
-        key: "pharmacy_id",
-      },
-      onDelete: "CASCADE",
-    },
+  
   },
   {
     tableName: "medication",

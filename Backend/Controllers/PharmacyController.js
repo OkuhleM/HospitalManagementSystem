@@ -1,4 +1,4 @@
-const { pharmacy, pharmacy } = require('../Models/index')
+const { pharmacy } = require('../Models/index')
 
 const createPharmacy = async (req, res) => {
 

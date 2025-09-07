@@ -96,6 +96,17 @@ pharmacy.hasMany(medication, { foreignKey: "pharmacy_id" });
 AppointmentModel.belongsTo(User, { foreignKey: "scheduled_by", as: "scheduledBy" });
 User.hasMany(AppointmentModel, { foreignKey: "scheduled_by", as: "appointmentsScheduled" });
 
+DoctorModel.hasMany(prescription, { foreignKey: "doctor_id" });
+prescription.belongsTo(DoctorModel, { foreignKey: "doctor_id" });
+
+PatientModel.hasMany(prescription, { foreignKey: "patient_id" });
+prescription.belongsTo(PatientModel, { foreignKey: "patient_id" });
+
+
+medication.hasMany(prescription, { foreignKey: "medication_id" });
+prescription.belongsTo(medication, { foreignKey: "medication_id" });
+
+
 module.exports = {
   User,
   DoctorModel,
@@ -109,5 +120,6 @@ module.exports = {
   rooms,
   medication,
   prescription,
-  pharmacy
+  pharmacy,
+  PatientModel
 };
