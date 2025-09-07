@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { dbConnection } = require("../Config/database");
+const AuditLog = require('../Models/AuditLogsModel')
 
 const medication = dbConnection.define(
   "medications",
@@ -29,5 +30,6 @@ const medication = dbConnection.define(
     timestamps: false,
   }
 );
+
 
 module.exports = medication;

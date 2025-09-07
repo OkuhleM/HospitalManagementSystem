@@ -48,4 +48,5 @@ res.status(500).json({message:"error finding Medication",error})
 
 }
 
+
 module.exports = { addMedication, getMedication, getSingleMedication };
