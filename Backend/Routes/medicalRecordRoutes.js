@@ -6,7 +6,7 @@ const patientsMedicalRecord = app => {
 
 app.post('/medical-records/patients-medical-record', authenticateToken, roleCheck(['receptionist','doctor']), createMedicalRecords)
 app.get('/medical-records/get-patient-record', authenticateToken, roleCheck(['receptionist', 'doctor']), getPatientsMedicalRecords)
-app.get('/medical-records/get-single-patient-record', authenticateToken, roleCheck(['receptionist', 'doctor']), getSinglePatientsRecord)
+app.get('/medical-records/get-single-patient-record/:id_Number', authenticateToken, roleCheck(['receptionist', 'doctor']), getSinglePatientsRecord)
 } 
 
 module.exports = { patientsMedicalRecord}   

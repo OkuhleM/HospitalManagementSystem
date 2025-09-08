@@ -1,6 +1,6 @@
 const { medicalRecords, User, PatientModel } = require("../Models/index");
 
-const createMedicalRecords = async (req, res, next) => {
+const createMedicalRecords = async (req, res) => {
   try {
     const {
         id_Number,
@@ -17,9 +17,8 @@ const createMedicalRecords = async (req, res, next) => {
         const patient = await PatientModel.findOne({ id_Number });
 
             if (!patient) {
-    //   return res.status(404).json({ error: "Patient not found" }); 
-
-    throw new Error(" Patient not found")
+      return res.status(404).json({ error: "Patient not found" }); 
+   
     }
 
     //    const attachments = req.files.map(file => ({
@@ -46,12 +45,12 @@ return res.status(200).json({message: "added successfully", addNewMedicalRecords
 
   } catch (error) {
     console.error("error: ", error);
-    next(error);
+return res.status(500).json({message: " error in adding the medical record", error})
   }
 };
 
 
-const getPatientsMedicalRecords = async (req, res, next) => {
+const getPatientsMedicalRecords = async (req, res) => {
 
 try{
 
@@ -62,11 +61,11 @@ try{
 
 } catch(error) {
     console.error('error', error);
-next(error)
+return res.status(200).json({message: " error finding patients medical record", error: error})
 }
 }
 
-const getSinglePatientsRecord = async (req, res,next) => {
+const getSinglePatientsRecord = async (req, res) => {
 
 try {
       const { id_Number } = req.params;
@@ -77,7 +76,7 @@ try {
 
 } catch (error) {
   console.error('error', error);
-next(error)
+return res.status(200).json({message: " error finding patients medical record", error: error})
 }
 
 }
