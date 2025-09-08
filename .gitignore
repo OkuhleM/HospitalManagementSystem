@@ -25,3 +25,6 @@ yarn-error.log*
 #bash
 
 .env
+
+# Node modules
+node_modules/
