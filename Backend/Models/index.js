@@ -114,9 +114,9 @@ User.belongsTo(medicalRecords, { foreignKey: "user_id" });
 medicalRecords.belongsTo(PatientModel, { foreignKey: "patient_id" });
 PatientModel.hasMany(medicalRecords, { foreignKey: "patient_id" });
 
-// // medicalRecords belongs to Doctor
-// medicalRecords.belongsTo(DoctorModel, { foreignKey: "doctor_id" });
-// DoctorModel.hasMany(medicalRecords, { foreignKey: "doctor_id" });
+          // // medicalRecords belongs to Doctor
+          // medicalRecords.belongsTo(DoctorModel, { foreignKey: "doctor_id" });
+          // DoctorModel.hasMany(medicalRecords, { foreignKey: "doctor_id" });
 
 
 

@@ -19,6 +19,7 @@ const { roomsRouter } = require("./Routes/roomsRouter");
 const { pharmacyRouter } = require("./Routes/pharmacyRoute");
 const { medicationsRouter } = require("./Routes/medicationsRoute");
 const errorHandler = require("./Middleware/errorHandler");
+const { patientsMedicalRecord } = require('./Routes/medicalRecordRoutes')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -58,6 +59,7 @@ wards(app)
 roomsRouter(app)
 pharmacyRouter(app)
 medicationsRouter(app)
+patientsMedicalRecord(app)
 
 app.use(errorHandler)
 

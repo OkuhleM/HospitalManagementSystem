@@ -2,10 +2,10 @@ const { DataTypes } = require("sequelize");
 const { dbConnection } = require("../Config/database");
 
 const medicalRecords = dbConnection.define(
-  "medications",
+  "medicalRecords",
   {
     record_id: {
-      type: DataTypes.INTEGER,
+       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
@@ -47,7 +47,7 @@ const medicalRecords = dbConnection.define(
       ),
       allowNull: true,
     },
-    notes: {
+    note: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -56,8 +56,8 @@ const medicalRecords = dbConnection.define(
     },
   },
   {
-    tableName: "medication",
-    timestamps: trues,
+    tableName: "medical_records",
+    timestamps: false,
   }
 );
 
