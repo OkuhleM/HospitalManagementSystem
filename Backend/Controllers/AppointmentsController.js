@@ -1,10 +1,10 @@
 const {
   AppointmentModel,
   DoctorModel,
- User,
+  User,
   wardModel,
 } = require("../Models/index");
-const PatientModel = require('../Models/Patient')
+const PatientModel = require("../Models/Patient");
 
 const createAppointments = async (req, res) => {
   try {
@@ -60,4 +60,34 @@ const createAppointments = async (req, res) => {
   }
 };
 
-module.exports = { createAppointments };
+const getAppointments = async (req, res) => {
+  try {
+    const appointment = await AppointmentModel.findAll();
+    console.log("appointment", appointment);
+
+    res.status(200).json({ message: "found appointment: ", appointment });
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).json({ message: "error finding appointment", error });
+  }
+};
+
+const getPatientsAppointment = async (req, res) => {
+  try {
+    const { patient_id } = req.params;
+    const foundPatient = await AppointmentModel.findOne({
+      patient_id,
+    });
+    console.log(foundPatient);
+    res.status(200).json({ message: "foundPatient found: ", foundPatient });
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).json({ message: "error foundPatient", error });
+  }
+};
+
+module.exports = {
+  createAppointments,
+  getAppointments,
+  getPatientsAppointment,
+};

@@ -1,18 +1,34 @@
-const { authenticateToken } = require('../Middleware/authMiddleware')
-const {roleCheck} = require('../Middleware/roleMiddleware')
+const { authenticateToken } = require("../Middleware/authMiddleware");
+const { roleCheck } = require("../Middleware/roleMiddleware");
 
-const {roomsController, getAvailableRooms, getSingleRoom} = require("../Controllers/RoomsController")
+const {
+  roomsController,
+  getAvailableRooms,
+  getSingleRoom,
+} = require("../Controllers/RoomsController");
 
-const roomsRouter = app => {
-    
-app.post('/rooms/add-rooms',authenticateToken, roleCheck(["admin"]), roomsController);
+const roomsRouter = (app) => {
+  app.post(
+    "/rooms/add-rooms",
+    authenticateToken,
+    roleCheck(["admin"]),
+    roomsController
+  );
 
+  app.get(
+    "/rooms/get-all-rooms",
+    authenticateToken,
+    roleCheck(["admin"]),
+    getAvailableRooms
+  );
+  app.get(
+    "/rooms/get-single-room/:room_id",
+    authenticateToken,
+    roleCheck(["admin"]),
+    getSingleRoom
+  );
+};
 
-app.get('/rooms/get-all-rooms',authenticateToken, roleCheck(['admin']), getAvailableRooms)
-app.get('/rooms/get-single-room/:room_id', authenticateToken, roleCheck(['admin']), getSingleRoom)
-
-}
-
-module.exports={
-    roomsRouter
-}
+module.exports = {
+  roomsRouter,
+};

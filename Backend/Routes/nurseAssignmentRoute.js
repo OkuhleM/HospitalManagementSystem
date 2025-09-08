@@ -1,12 +1,34 @@
-const { assignNursesToWorkStations } = require('../Controllers/NurseAssignmentController');
-const { roleCheck } = require('../Middleware/roleMiddleware');
-const {authenticateToken} = require("../Middleware/authMiddleware")
-
+const {
+  assignNursesToWorkStations,
+} = require("../Controllers/NurseAssignmentController");
+const {
+  getAllMatrons,
+  getSingleMatron,
+} = require("../Controllers/MatronController");
+const { roleCheck } = require("../Middleware/roleMiddleware");
+const { authenticateToken } = require("../Middleware/authMiddleware");
 
 const assignNurse = (app) => {
-app.post('/nurses/assign', authenticateToken, roleCheck(['matron']), assignNursesToWorkStations)
-// app.get('/get-all-nurses',authenticateToken,roleCheck(['admin','matron']), getAllNurses)
-// app.get('/get-single-nurse',authenticateToken,roleCheck(['admin','matron']), getSingleNurse)
-}
+  console.log(assignNursesToWorkStations, getAllMatrons, getSingleMatron);
 
-module.exports = {assignNurse}
+  app.post(
+    "/matron",
+    authenticateToken,
+    roleCheck(["matron"]),
+    assignNursesToWorkStations
+  );
+  app.get(
+    "/matron/:email",
+    authenticateToken,
+    roleCheck(["admin", "matron"]),
+    getSingleMatron
+  );
+  app.get(
+    "/matron",
+    authenticateToken,
+    roleCheck(["admin", "matron"]),
+    getAllMatrons
+  );
+};
+
+module.exports = { assignNurse };

@@ -21,4 +21,29 @@ const addWards = async (req, res) => {
     res.status(501).json({ error: error.error });
   }
 };
-module.exports = { addWards };
+
+const getAllWards = async (req, res) => {
+  try {
+    const availableWards = await wardModel.findAll();
+    console.log("availableWards", availableWards);
+
+    res.status(200).json(availableWards);
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).json({ message: "error finding availableWards", error });
+  }
+};
+
+const getSingleWards = async (req, res) => {
+  try {
+    const { ward_id } = req.params;
+    const foundWard = await User.findOne({ ward_id: `${ward_id}` });
+    console.log(foundWard);
+    res.status(200).json({ foundWard });
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).json({ message: "error finding foundWard", error });
+  }
+};
+
+module.exports = { addWards, getAllWards, getSingleWards };
