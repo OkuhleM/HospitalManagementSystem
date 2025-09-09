@@ -13,6 +13,8 @@ const medication = require("./MedicationModel");
 const prescription = require("./PrescriptionsModel");
 const pharmacy = require("./PharmacyModel");
 const medicalRecords = require('./MedicalRecordsModels')
+const medicalAid = require('./MedicalAidModel')
+ 
 
 // User Profile
 User.hasOne(DoctorModel, {
@@ -82,8 +84,7 @@ DoctorModel.hasMany(AppointmentModel, { foreignKey: "doctor_id" });
 AppointmentModel.belongsTo(wardModel, { foreignKey: "ward_id" });
 wardModel.hasMany(AppointmentModel, { foreignKey: "ward_id" });
 
-Billings.belongsTo(PatientModel, { foreignKey: "patient_id" });
-PatientModel.hasMany(Billings, { foreignKey: "patient_id" });
+
 
 rooms.belongsTo(wardModel, { foreignKey: "ward_id" });
 wardModel.hasMany(rooms, { foreignKey: "ward_id" });
@@ -114,11 +115,14 @@ User.belongsTo(medicalRecords, { foreignKey: "user_id" });
 medicalRecords.belongsTo(PatientModel, { foreignKey: "patient_id" });
 PatientModel.hasMany(medicalRecords, { foreignKey: "patient_id" });
 
-          // // medicalRecords belongs to Doctor
-          // medicalRecords.belongsTo(DoctorModel, { foreignKey: "doctor_id" });
-          // DoctorModel.hasMany(medicalRecords, { foreignKey: "doctor_id" });
+PatientModel.belongsTo(medicalAid, { foreignKey: "medical_aid_id", as: "medicalAid" });
+medicalAid.hasMany(PatientModel, { foreignKey: "medical_aid_id", as: "patients" });
 
+Billings.belongsTo(PatientModel, { foreignKey: "patient_id", as: "patient" });
+PatientModel.hasMany(Billings, { foreignKey: "patient_id", as: "billings" });
 
+Billings.belongsTo(medicalAid, { foreignKey: "medical_aid_id", as: "medicalAid" });
+medicalAid.hasMany(Billings, { foreignKey: "medical_aid_id", as: "billings" });
 
 
 module.exports = {
@@ -136,5 +140,6 @@ module.exports = {
   prescription,
   pharmacy,
   PatientModel,
-  medicalRecords
+  medicalRecords,
+  medicalAid
 };

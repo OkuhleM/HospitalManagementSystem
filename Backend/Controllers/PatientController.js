@@ -1,16 +1,14 @@
-const PatientsModel = require("../Models/Patient");
+const { PatientsModel, medicalAid } = require("../Models/index");
 
 const addPatient = async (req, res) => {
   if (!req.body) {
     console.warn(
       "addPatient: req.body is undefined — check express.json() middleware and Content-Type header"
     );
-    return res
-      .status(400)
-      .json({
-        message:
-          "Missing request body. Send JSON with Content-Type: application/json",
-      });
+    return res.status(400).json({
+      message:
+        "Missing request body. Send JSON with Content-Type: application/json",
+    });
   }
   try {
     const {
@@ -23,6 +21,7 @@ const addPatient = async (req, res) => {
       address,
       firstname,
       lastname,
+      medical_aid_id,
     } = req.body;
 
     console.log("DOB: ", date_of_birth, medical_condition);
@@ -38,13 +37,22 @@ const addPatient = async (req, res) => {
         address,
         firstname,
         lastname,
+        medical_aid_id,
       ].every((v) => v !== undefined && v !== null && String(v).trim() !== "")
     ) {
       return res
         .status(400)
         .json({ message: "All required fields must be filled" });
     }
-
+    const medicalAidFound = await medicalAid.findOne({
+      where: { medical_aid_id: `${medical_aid_id}` },
+    });
+    if (!medicalAid) {
+      return res.status(404).json({ message: "medical aid not found" });
+    }
+    if (!patient) {
+      return res.status(404).json({ message: "patient not found" });
+    }
     const newPatient = await PatientsModel.create({
       date_of_birth,
       id_Number,
@@ -55,6 +63,7 @@ const addPatient = async (req, res) => {
       address,
       firstname,
       lastname,
+      medical_aid_id: medicalAidFound.medical_aid_id,
     });
 
     res

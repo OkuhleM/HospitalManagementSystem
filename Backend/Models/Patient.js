@@ -49,6 +49,15 @@ const PatientsModel = dbConnection.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+     medical_aid_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "medicalAid",
+        key: "medical_aid_id",
+      },
+      onDelete: "CASCADE",
+    },
   },
   {
     timestamps: true,

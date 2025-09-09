@@ -9,7 +9,6 @@ const { roleCheck } = require("../Middleware/roleMiddleware");
 const { authenticateToken } = require("../Middleware/authMiddleware");
 
 const assignNurse = (app) => {
-  console.log(assignNursesToWorkStations, getAllMatrons, getSingleMatron);
 
   app.post(
     "/matron",

@@ -19,7 +19,9 @@ const { roomsRouter } = require("./Routes/roomsRouter");
 const { pharmacyRouter } = require("./Routes/pharmacyRoute");
 const { medicationsRouter } = require("./Routes/medicationsRoute");
 const errorHandler = require("./Middleware/errorHandler");
-const { patientsMedicalRecord } = require('./Routes/medicalRecordRoutes')
+const { patientsMedicalRecord } = require('./Routes/medicalRecordRoutes');
+const { medicalAidRouter } = require("./Routes/medicalAidRoute");
+const { accountSettling } = require("./Routes/billingsRouter");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -60,6 +62,8 @@ roomsRouter(app)
 pharmacyRouter(app)
 medicationsRouter(app)
 patientsMedicalRecord(app)
+medicalAidRouter(app)
+accountSettling(app)
 
 app.use(errorHandler)
 
