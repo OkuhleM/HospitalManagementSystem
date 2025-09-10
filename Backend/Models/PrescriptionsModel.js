@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const { dbConnection } = require("../Config/database");
 
 const prescription = dbConnection.define(
-  "medications",
+  "prescriptions",
   {
     prescription_id: {
       type: DataTypes.INTEGER,
@@ -21,7 +21,7 @@ const prescription = dbConnection.define(
     doctor_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "Doctors",
+        model: "doctors",
         key: "doctor_id",
       },
       onDelete: "CASCADE",
@@ -41,7 +41,7 @@ const prescription = dbConnection.define(
     },
     frequency: {
       type: DataTypes.TEXT,
-      allowNull: "false",
+      allowNull: false,
     },
     duration: {
       type: DataTypes.TEXT,

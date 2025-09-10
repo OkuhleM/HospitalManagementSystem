@@ -22,6 +22,7 @@ const errorHandler = require("./Middleware/errorHandler");
 const { patientsMedicalRecord } = require('./Routes/medicalRecordRoutes');
 const { medicalAidRouter } = require("./Routes/medicalAidRoute");
 const { accountSettling } = require("./Routes/billingsRouter");
+const { medicalPrecriptions } = require("./Routes/prescriptionsRouter");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -64,6 +65,7 @@ medicationsRouter(app)
 patientsMedicalRecord(app)
 medicalAidRouter(app)
 accountSettling(app)
+medicalPrecriptions(app)
 
 app.use(errorHandler)
 

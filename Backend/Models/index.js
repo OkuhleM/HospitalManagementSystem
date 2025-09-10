@@ -92,8 +92,8 @@ wardModel.hasMany(rooms, { foreignKey: "ward_id" });
 prescription.belongsTo(medication, { foreignKey: "medication_id" });
 medication.hasOne(prescription, { foreignKey: "medication_id" });
 
-medication.belongsTo(pharmacy, { foreignKey: "pharmacy_id" });
-pharmacy.hasMany(medication, { foreignKey: "pharmacy_id" });
+// medication.belongsTo(pharmacy, { foreignKey: "pharmacy_id" });
+// pharmacy.hasMany(medication, { foreignKey: "pharmacy_id" });
 
 AppointmentModel.belongsTo(User, { foreignKey: "scheduled_by", as: "scheduledBy" });
 User.hasMany(AppointmentModel, { foreignKey: "scheduled_by", as: "appointmentsScheduled" });
