@@ -23,6 +23,7 @@ const { patientsMedicalRecord } = require('./Routes/medicalRecordRoutes');
 const { medicalAidRouter } = require("./Routes/medicalAidRoute");
 const { accountSettling } = require("./Routes/billingsRouter");
 const { medicalPrecriptions } = require("./Routes/prescriptionsRouter");
+const { invoicedBills } = require("./Routes/invoicesRouter");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -66,6 +67,7 @@ patientsMedicalRecord(app)
 medicalAidRouter(app)
 accountSettling(app)
 medicalPrecriptions(app)
+invoicedBills(app)
 
 app.use(errorHandler)
 
