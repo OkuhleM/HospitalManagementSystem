@@ -19,11 +19,13 @@ const { roomsRouter } = require("./Routes/roomsRouter");
 const { pharmacyRouter } = require("./Routes/pharmacyRoute");
 const { medicationsRouter } = require("./Routes/medicationsRoute");
 const errorHandler = require("./Middleware/errorHandler");
-const { patientsMedicalRecord } = require('./Routes/medicalRecordRoutes');
+const { patientsMedicalRecord } = require("./Routes/medicalRecordRoutes");
 const { medicalAidRouter } = require("./Routes/medicalAidRoute");
 const { accountSettling } = require("./Routes/billingsRouter");
 const { medicalPrecriptions } = require("./Routes/prescriptionsRouter");
 const { invoicedBills } = require("./Routes/invoicesRouter");
+const { accountPayments } = require("./Routes/PaymentsRouter");
+const { medicalAidClaims } = require("./Routes/claimRoute");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -59,17 +61,20 @@ receptionist(app);
 patientsRoutes(app);
 assignNurse(app);
 appointments(app);
-wards(app)
-roomsRouter(app)
-pharmacyRouter(app)
-medicationsRouter(app)
-patientsMedicalRecord(app)
-medicalAidRouter(app)
-accountSettling(app)
-medicalPrecriptions(app)
-invoicedBills(app)
+wards(app);
+roomsRouter(app);
+pharmacyRouter(app);
+medicationsRouter(app);
+patientsMedicalRecord(app);
+medicalAidRouter(app);
+accountSettling(app);
+medicalPrecriptions(app);
+invoicedBills(app);
+accountPayments(app);
+medicalAidRouter(app);
+medicalAidClaims(app);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.get("/", function (req, res) {
   res.send("HSM"); // This will serve your request to '/'.

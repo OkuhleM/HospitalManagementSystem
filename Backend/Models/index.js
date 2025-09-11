@@ -15,7 +15,8 @@ const pharmacy = require("./PharmacyModel");
 const medicalRecords = require("./MedicalRecordsModels");
 const medicalAid = require("./MedicalAidModel");
 const invoices = require("./InvoicesModel");
-
+const Payment = require("./PaymentsModel");
+const Claim = require('./ClaimsModel')
 // User Profile
 User.hasOne(DoctorModel, {
   foreignKey: "user_id",
@@ -141,6 +142,15 @@ PatientModel.hasMany(invoices, { foreignKey: "Patient_id", as: "patients" });
 invoices.belongsTo(DoctorModel, { foreignKey: "doctor_id", as: "doctors" });
 DoctorModel.hasMany(invoices, { foreignKey: "doctor_id", as: "doctors" });
 
+Payment.belongsTo(invoices, { foreignKey: "invoice_id", as: "invoices" });
+invoices.hasMany(Payment, { foreignKey: "invoice_id", as: "invoices" });
+
+Claim.belongsTo(invoices, {foreignKey: "invoice_id"});
+invoices.hasMany(Claim, { foreignKey: "invoice_id"});
+
+Claim.belongsTo(medicalAid, {foreignKey: "medical_aid_id"})
+medicalAid.hasMany(Claim, { foreignKey: "medical_aid_id"})
+
 module.exports = {
   User,
   DoctorModel,
@@ -159,4 +169,6 @@ module.exports = {
   medicalRecords,
   medicalAid,
   invoices,
+  Payment,
+  Claim
 };
