@@ -46,7 +46,7 @@ cd hospital-management-system
 
 ### 2. Backend Setup  
 ```bash
-cd backend
+cd Backend
 npm install
 ```
 
@@ -72,7 +72,7 @@ npm run dev
 
 ### 3. Frontend Setup  
 ```bash
-cd frontend
+cd Client
 npm install
 npm run dev
 ```
