@@ -16,13 +16,13 @@ function Navbar() {
          <li><a href="#">Docs</a></li>
         <li>  <Link to="">
             {" "}
-            <button>Cotantact Sales </button>{" "}
+            <button className="btn-outline"> Sign Up</button>{" "}
           </Link>
           </li>
           <li>
           <Link to="">
             {" "}
-            <button> Log In </button>{" "}
+            <button className="btn-filled"> Log In </button>{" "}
           </Link>
           </li>
         </ul>
