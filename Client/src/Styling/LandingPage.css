@@ -3,7 +3,7 @@
   padding: 4rem 2rem;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,30 +16,60 @@
   gap: 1rem;
 }
 
-.info{
-    display: flex;
-    gap: 2rem;
-    margin: 4rem auto;
-    align-items: center;
-    justify-content: center;
+.info {
+  display: flex;
+  gap: 2rem;
+  margin: 4rem auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.enclose {
+  background-color: #102a3e;
+  padding: 2rem 4rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.heading {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 9rem;
+}
+
+.features, .docs{
+  display: flex;
+  gap: 25px;
+  padding: 16px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.roles, .info-docs {
+  background-color: #102a3e;
+  padding: 2rem 2rem;
+  border: 1px solid #e0c2c2;
+  text-align: start;
+  width: 400px;
   
-
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
 
-.enclose{
-background-color: #102A3E;
-padding: 2rem 4rem;
+h5 {
+  font-weight: bold;
+  font-size: 15px;
 }
 
-ul{
-    list-style: none;
+.hp{
+    margin-top: 3rem;
 }
 
-.features{
-    margin-top:  4rem;
-}
-
-.heading{
-    font-size: 30px;
-    font-weight: bold;
+.features p, .docs p {
+  font-size: 1rem;
+  color: #007bff;
+  line-height: 1.5;
+  margin: 5px 0; /* Resets default margin */
 }

@@ -29,8 +29,8 @@ function LandingPage() {
           </div>
         </section>
 
-        <div className="features" id="Features">
           <p className="heading">Purpose-built for every role</p>
+        <div className="features" id="Features">
 
           <div className="roles">
             <h5>Admin</h5>
@@ -63,6 +63,35 @@ function LandingPage() {
           </div>
 
         </div>
+
+<p className="heading hp" >Nurses and matrons, in sync</p>
+<div className="docs">
+    <div className="info-docs">
+<h5>Nurse</h5>
+<p>Daily schedules, station statements, and patient history</p>
+<p>Station assignments</p>
+<p>Shift Overview</p>
+<p>Patient history</p>
+    </div>
+
+ <div className="info-docs">
+<h5>Matron</h5>
+<p>Assign the nurses to stations and balance shift capacity.</p>
+<p>Team overview</p>
+<p>Reassign shifts</p>
+<p>Alerts & notifications</p>
+    </div>
+
+     <div className="info-docs">
+<h5>Operations</h5>
+<p>Analytics, invoices, claims, and audit trails in one place</p>
+<p>Billing and Payments</p>
+<p>Claims handling</p>
+<p>Audit Logging</p>
+    </div>
+    
+</div>
+
       </div>
     </div>
   );
