@@ -2,6 +2,7 @@ import React from 'react'
 import IsLoading from './IsLoading'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from '../Pages/LandingPage';
+import LoginPage from '../Pages/LoginPage';
 
 
 function Display() {
@@ -11,6 +12,7 @@ function Display() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/login" element={<LandingPage />}></Route>
         </Routes>
       </Router>
         {/* <IsLoading/> */}
