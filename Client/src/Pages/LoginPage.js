@@ -2,30 +2,30 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import IsLoading from "../Components/IsLoading";
+import '../Styling/Login.css'
 
 function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-//   const [showPassword, setShowPassword] = useState(false);
+  //   const [showPassword, setShowPassword] = useState(false);
 
-//   const togglePassword = () => {
-//     setShowPassword(prev => !prev);
-//   };
+  //   const togglePassword = () => {
+  //     setShowPassword(prev => !prev);
+  //   };
 
   console.log("formData", formData);
 
-
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-     setIsLoading(true);
+    setIsLoading(true);
     setError("");
-console.log('submitted')
+    console.log("submitted");
     try {
       const res = await axios.post("http://localhost:5000/login", formData);
-      console.log('res', res)
+      console.log("res", res);
       const { token, user } = res.data;
 
       localStorage.setItem("token", token);
@@ -33,13 +33,13 @@ console.log('submitted')
 
       setTimeout(() => {
         setIsLoading(false);
-    navigate("/dashboard")
+        navigate("/dashboard");
       }, 1500);
 
       // Redirect based on role
-    //   navigate(`/${user.role}-dashboard`);
+      //   navigate(`/${user.role}-dashboard`);
     } catch (err) {
-              setIsLoading(false);
+      setIsLoading(false);
 
       setError("Invalid credentials");
     }
@@ -50,8 +50,9 @@ console.log('submitted')
   return (
     <div>
       <div className="login-container">
-        <form>
-          <h3>Log In</h3>
+        <form className="login-form">
+            <h2>Welcome Back</h2>
+      <p>Log in to continue to MedicaHub</p>
           <input
             type="email"
             placeholder="Email"
@@ -59,9 +60,10 @@ console.log('submitted')
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
+            required
           />
+          <div className="password-wrapper">
           <input
-          
             type="password"
             placeholder="Password"
             value={formData.password}
@@ -69,7 +71,10 @@ console.log('submitted')
               setFormData({ ...formData, password: e.target.value })
             }
           />
-          <button onClick={handleSubmit}>Log In</button>
+                  {/* <span onclick="togglePassword()" class="toggle">Show</span> */}
+                  </div>
+          <button onClick={handleSubmit} className="login-btn">Log In</button>
+                <a href="#" className="forgot">Forgot Password?</a>
         </form>
         {error && <p className="error">{error}</p>}
       </div>
