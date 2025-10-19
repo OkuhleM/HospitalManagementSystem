@@ -33,10 +33,9 @@ function LoginPage() {
 
       setTimeout(() => {
         setIsLoading(false);
-        navigate("/dashboard");
+        navigate("/r-dashboard");
       }, 1500);
 
-      // Redirect based on role
       //   navigate(`/${user.role}-dashboard`);
     } catch (err) {
       setIsLoading(false);

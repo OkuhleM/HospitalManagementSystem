@@ -3,7 +3,8 @@ import IsLoading from './IsLoading'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from '../Pages/LandingPage';
 import LoginPage from '../Pages/LoginPage';
-import Dashboard from '../Pages/Dashboard'
+import ReceptionistDashBoard from '../Pages/ReceptionistDashBoard'
+// import IsLoading from './IsLoading';
 
 
 function Display() {
@@ -14,7 +15,8 @@ function Display() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/r-dashboard" element={<ReceptionistDashBoard />}></Route>
+          <Route path="/isloading" element={<IsLoading />}> </Route>
         </Routes>
       </Router>
         {/* <IsLoading/> */}
