@@ -10,13 +10,6 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  //   const [showPassword, setShowPassword] = useState(false);
-
-  //   const togglePassword = () => {
-  //     setShowPassword(prev => !prev);
-  //   };
-
-  console.log("formData", formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +20,8 @@ function LoginPage() {
       const res = await axios.post("http://localhost:5000/login", formData);
       console.log("res", res);
       const { token, user } = res.data;
+      console.log("token, user: ",token, user)
+      
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
