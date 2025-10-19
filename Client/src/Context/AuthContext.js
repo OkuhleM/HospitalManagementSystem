@@ -9,8 +9,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = getToken();
     if (token && !isTokenExpired(token)) {
-      const decoded = decodeToken();
-      console.log('decoded', decoded)
+      // pass token into decodeToken
+      const decoded = decodeToken(token);
+      console.log("decoded", decoded);
       setUser(decoded);
     }
   }, []);

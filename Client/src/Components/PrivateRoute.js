@@ -1,17 +1,32 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
 import { useSelector } from "react-redux";
 
-const PrivateRoute = ({ children, allowedRoles }) => {
-  const { user: contextUser } = useContext(AuthContext);
-  const reduxUser = useSelector((state) => state.auth.user);
-  const user = contextUser || reduxUser;
-
-  if (!user) return <Navigate to="/login" />;
-  if (!allowedRoles.includes(user.role)) return <Navigate to="/unauthorized" />;
-
-  return children;
+// Optional: fallback to localStorage if Redux state is empty
+const getUserFromStorage = () => {
+  const stored = localStorage.getItem("user");
+  return stored ? JSON.parse(stored) : null;
 };
+
+function PrivateRoute({ allowedRoles = [], children }) {
+  // Get user from Redux state
+  const { user } = useSelector((state) => state.auth) || {};
+
+  // Fallback to localStorage
+  const currentUser = user || getUserFromStorage();
+
+  // If no user or no token, redirect to login
+  if (!currentUser || !localStorage.getItem("token")) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // If user role is not allowed, redirect to login or landing page
+  if (!allowedRoles.includes(currentUser.role)) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // If allowed, render children (dashboard)
+  return children;
+}
 
 export default PrivateRoute;
