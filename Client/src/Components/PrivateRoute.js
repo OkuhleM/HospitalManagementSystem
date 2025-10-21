@@ -9,17 +9,23 @@ const getUserFromStorage = () => {
   return stored ? JSON.parse(stored) : null;
 };
 
-
 function PrivateRoute({ allowedRoles = [], children }) {
   const { user } = useSelector((state) => state.auth) || {};
   const currentUser = user || getUserFromStorage();
   const token = localStorage.getItem("token");
 
-  console.log("🔍 PrivateRoute check:", currentUser?.role, "allowed:", allowedRoles);
-console.log("User role:", currentUser?.role);
-console.log("Allowed roles:", allowedRoles);
+  console.log(
+    "🔍 PrivateRoute check:",
+    currentUser?.role,
+    "allowed:",
+    allowedRoles
+  );
+  console.log("User role:", currentUser?.role);
+  console.log("Allowed roles:", allowedRoles);
+
+
   if (user === undefined && !currentUser) {
-    return <IsLoading />; 
+    return <IsLoading />;
   }
 
   // 🚫 No user or no token — kick to login
@@ -27,6 +33,7 @@ console.log("Allowed roles:", allowedRoles);
     console.warn("❌ No user or token found, redirecting to /login");
     return <Navigate to="/login" replace />;
   }
+  const role = currentUser.role?.toLowerCase();
 
   // 🚫 Role mismatch — not allowed
   if (!allowedRoles.includes(currentUser.role)) {
@@ -37,6 +44,5 @@ console.log("Allowed roles:", allowedRoles);
   // ✅ Everything’s good — render child route
   return children;
 }
-
 
 export default PrivateRoute;

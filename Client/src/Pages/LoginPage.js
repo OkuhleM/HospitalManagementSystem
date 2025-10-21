@@ -11,8 +11,7 @@ function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-    const [userData, setUserData] = useState(null);
-
+  const [userData, setUserData] = useState(null);
 
   const dispatch = useDispatch();
   const { setUser: setAuthUser } = useContext(AuthContext);
@@ -24,9 +23,7 @@ function LoginPage() {
     setIsLoading(true);
     setError("");
 
-
     try {
-
       const res = await axios.post("http://localhost:5000/login", formData);
       console.log("res", res);
 
@@ -40,8 +37,8 @@ function LoginPage() {
 
       dispatch(setUser({ token, user }));
       setAuthUser(user);
-      setUserData(user);
-
+      // setUserData(user);
+      navigate(`/`);
 
       // setTimeout(() => {
       //   setIsLoading(false);
@@ -51,15 +48,14 @@ function LoginPage() {
 
       //   navigate(`/${user.role}-dashboard`);
     } catch (err) {
-      console.error("Log in error: ", err)
+      console.error("Log in error: ", err);
       setIsLoading(false);
 
       setError("Invalid credentials or server error 😬");
     }
   };
 
-
-   useEffect(() => {
+  useEffect(() => {
     if (!userData) return;
 
     let route = "/";
@@ -82,11 +78,10 @@ function LoginPage() {
       default:
         route = "/patients-dashboard";
     }
-    console.log("Redirecting user:", userData.role, "to:", route)
-
+    console.log("Redirecting user:", userData.role, "to:", route);
 
     setTimeout(() => {
-          console.log("Redirecting user:", userData.role, "to:", route)
+      console.log("Redirecting user:", userData.role, "to:", route);
 
       setIsLoading(false);
       console.log("Navigating to:", route);
