@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import IsLoading from "../Components/IsLoading";
@@ -11,6 +11,8 @@ function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+    const [userData, setUserData] = useState(null);
+
 
   const dispatch = useDispatch();
   const { setUser: setAuthUser } = useContext(AuthContext);
@@ -24,45 +26,28 @@ function LoginPage() {
 
 
     try {
+
       const res = await axios.post("http://localhost:5000/login", formData);
       console.log("res", res);
+
       const { token, user } = res.data;
+
       console.log("token, user: ", token, user);
+      console.log("user.role:", user?.role);
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
       dispatch(setUser({ token, user }));
       setAuthUser(user);
+      setUserData(user);
 
 
-let route = "/";
-      switch (user.role) {
-        case "admin":
-          route = "/admin-dashboard";
-          break;
-        case "doctor":
-          route = "/doctor-dashboard";
-          break;
-        case "nurse":
-          route = "/nurse-dashboard";
-          break;
-        case "receptionist":
-          route = "/r-dashboard";
-          break;
-        case "matron":
-          route = "/matron-dashboard";
-          break;
-        default:
-          route = "/patients-dashboard";
-      }
-
-
-
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate(route);
-      }, 1500);
+      // setTimeout(() => {
+      //   setIsLoading(false);
+      //   navigate(route);
+      //   console.log('route', route)
+      // }, 1500);
 
       //   navigate(`/${user.role}-dashboard`);
     } catch (err) {
@@ -72,6 +57,42 @@ let route = "/";
       setError("Invalid credentials or server error 😬");
     }
   };
+
+
+   useEffect(() => {
+    if (!userData) return;
+
+    let route = "/";
+    switch (userData.role) {
+      case "admin":
+        route = "/admin-dashboard";
+        break;
+      case "doctor":
+        route = "/doctor-dashboard";
+        break;
+      case "nurse":
+        route = "/nurse-dashboard";
+        break;
+      case "receptionist":
+        route = "/r-dashboard";
+        break;
+      case "matron":
+        route = "/matron-dashboard";
+        break;
+      default:
+        route = "/patients-dashboard";
+    }
+    console.log("Redirecting user:", userData.role, "to:", route)
+
+
+    setTimeout(() => {
+          console.log("Redirecting user:", userData.role, "to:", route)
+
+      setIsLoading(false);
+      console.log("Navigating to:", route);
+      navigate(route);
+    }, 1200);
+  }, [userData, navigate]);
 
   if (isLoading) return <IsLoading />;
 
