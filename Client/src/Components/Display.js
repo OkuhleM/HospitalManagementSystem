@@ -8,7 +8,7 @@ import DoctorDashboard from "./DoctorDashboard";
 import MatronDashboard from "./MatronDashboard";
 import NurseDashboard from "./NurseDashboard";
 import PatientsDashboard from "./PatientsDashboard";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import IsLoading from "./IsLoading";
 
 function Display() {
@@ -18,34 +18,32 @@ function Display() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Admin dashboard */}
+      
         <Route
           path="/admin-dashboard"
           element={
-            <PrivateRoute allowedRoles={["admin"]}>
+            // <PrivateRoute allowedRoles={["admin"]}>
               <AdminDashboard />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
-        {/* Receptionist dashboard */}
         <Route
           path="/r-dashboard"
           element={
-            <PrivateRoute allowedRoles={["receptionist"]}>
+            // <PrivateRoute allowedRoles={["receptionist"]}>
               <ReceptionistDashBoard />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
-      
         {/* Nurse dashboard */}
         <Route
           path="/nurse-dashboard"
           element={
-            <PrivateRoute allowedRoles={["nurse"]}>
+            // <PrivateRoute allowedRoles={["nurse"]}>
               <NurseDashboard />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
@@ -53,9 +51,9 @@ function Display() {
         <Route
           path="/matron-dashboard"
           element={
-            <PrivateRoute allowedRoles={["matron"]}>
+            // <PrivateRoute allowedRoles={["matron"]}>
               <MatronDashboard />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
@@ -63,18 +61,18 @@ function Display() {
         <Route
           path="/patients-dashboard"
           element={
-            <PrivateRoute allowedRoles={["patient"]}>
+            // <PrivateRoute allowedRoles={["patient"]}>
               <PatientsDashboard />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
         <Route
           path="/doctor-dashboard"
           element={
-            <PrivateRoute allowedRoles={["doctor"]}>
+            // <PrivateRoute allowedRoles={["doctor"]}>
               <DoctorDashboard />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
