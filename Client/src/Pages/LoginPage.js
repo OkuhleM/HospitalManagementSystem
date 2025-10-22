@@ -6,6 +6,7 @@ import "../Styling/Login.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Redux/AuthSlice";
 import { AuthContext } from "../Context/AuthContext";
+import PasswordInput from "../Components/PasswordInput";
 
 function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -94,7 +95,7 @@ setTimeout(() => {
         />
 
         <div className="password-wrapper">
-          <input
+          {/* <input
             type="password"
             placeholder="Password"
             value={formData.password}
@@ -102,7 +103,11 @@ setTimeout(() => {
               setFormData({ ...formData, password: e.target.value })
             }
             required
-          />
+          /> */}
+          <PasswordInput
+  value={formData.password}
+  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+/>
         </div>
 
         <button className="login-btn" type="submit">
