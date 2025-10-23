@@ -36,7 +36,28 @@ function AdminDashboard() {
 
         <main className="main-content">
         <h1>Welcome, Admin 👋</h1>
-        <p>Select a module from the sidebar to get started.</p>
+        <div className="card-container">
+          <div className="card">
+            <p> Total Patients</p>
+            <h3>12,500</h3>
+             <p>+4%</p> <p>vs</p> <p>last month</p>
+          </div>
+           <div className="card">
+            <p> Active Staff</p>
+            <h3>342</h3>
+           <p>on duty: 128</p>
+          </div>
+           <div className="card">
+            <p> Revenue</p>
+            <h3>$1.28M</h3>
+             <p>+4%</p> <p>YoY</p>
+          </div>
+           <div className="card">
+            <p> Active Appointments</p>
+            <h3>1.067</h3>
+            <p>Today: 142</p>
+          </div>
+           </div>
       </main>
 
     </div>
