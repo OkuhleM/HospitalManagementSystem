@@ -1,35 +1,46 @@
-import React from 'react'
+import React from "react";
 import Logo from "../Assets/Logo.png";
-
+import "../Styling/AdminDashboard.css";
 
 function AdminDashboard() {
   return (
-    <div>
-      <nav className='top-nav'>
+    <div className="admin-dashboard">
+      <nav className="top-nav">
         <div className="logo">
-                  <img src={Logo} alt="Hospital Logo" />
-                </div>
-        <ul>
-          <li><input type='search' placeholder='search across all modules'/></li>
-          <li><button>Add new user</button></li>
-          <li>Last 30 Days</li>
-          
-        </ul>
+          <img src={Logo} alt="Hospital Logo" />
+          <h2>MedicaHub</h2>
+        </div>
+
+         <div className="nav-actions">
+          <input
+            type="search"
+            placeholder="🔍 Search across all modules..."
+            className="search-bar"
+          />
+          <button className="add-btn">+ Add New User</button>
+          <span className="stats">📅 Last 30 Days</span>
+        </div>
       </nav>
 
-      <nav className='side-nav'>
+      <aside className="side-nav">
         <ul>
-          <li>Dashboard Overview</li>
-          <li><button>User Management</button></li>
-          <li><button>Billing$ & Invoices</button></li>
-          <li><button>Department & Staff</button></li>
-          <li><button>Apppointments</button></li>
-          <li><button>System Settings</button></li>
-          <li><button>Audit Logs</button></li>
+          <li className="active">🏠 Dashboard Overview</li>
+          <li>👥 User Management</li>
+          <li>💰 Billing & Invoices</li>
+          <li>🏥 Department & Staff</li>
+          <li>📅 Appointments</li>
+          <li>⚙️ System Settings</li>
+          <li>🧾 Audit Logs</li>
         </ul>
-      </nav>
+      </aside>
+
+        <main className="main-content">
+        <h1>Welcome, Admin 👋</h1>
+        <p>Select a module from the sidebar to get started.</p>
+      </main>
+
     </div>
-  )
+  );
 }
 
-export default AdminDashboard
+export default AdminDashboard;
