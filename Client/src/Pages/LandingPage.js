@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import "../Styling/LandingPage.css";
 
 function LandingPage() {
+  
   return (
     <div>
       <Navbar />
