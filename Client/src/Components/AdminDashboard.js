@@ -40,7 +40,7 @@ function AdminDashboard() {
           <div className="card">
             <p> Total Patients</p>
             <h3>12,500</h3>
-             <p>+4%</p> <p>vs</p> <p>last month</p>
+             <p>+4% vs last month</p>
           </div>
            <div className="card">
             <p> Active Staff</p>
@@ -50,7 +50,7 @@ function AdminDashboard() {
            <div className="card">
             <p> Revenue</p>
             <h3>$1.28M</h3>
-             <p>+4%</p> <p>YoY</p>
+             <p>+4% YoY</p> 
           </div>
            <div className="card">
             <p> Active Appointments</p>

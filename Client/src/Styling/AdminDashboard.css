@@ -15,7 +15,7 @@
   background: #0f1c2e;
   color: #fff;
   padding: 0 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -94,7 +94,26 @@
 
 .main-content {
   padding: 30px;
-  background-color: #fff;
+  background-color: #f0f6fa;
   overflow-y: auto;
   color: black;
+}
+
+.card-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  /* text-align: center;
+    justify-self: center; */
+}
+
+.card {
+  /* background-color: #102a3e; */
+  padding: 2rem 2rem;
+  border: 1px solid #e0c2c2;
+  text-align: start;
+  width: 400px;
+  line-height: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
