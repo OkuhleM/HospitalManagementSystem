@@ -1,8 +1,31 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Logo from "../Assets/Logo.png";
 import "../Styling/AdminDashboard.css";
+import axios from "axios";
 
 function AdminDashboard() {
+
+const [stats, setStates] = useState({
+   patients: { total: 0, change: 0 },
+    staff: { active: 0, onDuty: 0 },
+    revenue: { amount: 0, change: 0 },
+    appointments: { total: 0, today: 0 },
+})
+
+useEffect(()=>{
+
+  const fetchStats = async => {
+    try{
+      const response = await axios('http')
+
+    } catch (error) {
+
+    }
+  }
+
+
+},[])
+
   return (
     <div className="admin-dashboard">
       <nav className="top-nav">
