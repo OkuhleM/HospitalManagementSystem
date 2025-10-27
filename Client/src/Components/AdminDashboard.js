@@ -12,19 +12,20 @@ const [stats, setStates] = useState({
     appointments: { total: 0, today: 0 },
 })
 
-// useEffect(()=>{
+useEffect(()=>{
 
-//   const fetchStats = async => {
-//     try{
-//       const response = await axios('http')
+  const fetchStats = async => {
+    try{
+      const response = axios('http://localhost:5000/weekly-stats')
+      
 
-//     } catch (error) {
+    } catch (error) {
 
-//     }
-//   }
+    }
+  }
 
 
-// },[])
+},[])
 
   return (
     <div className="admin-dashboard">
