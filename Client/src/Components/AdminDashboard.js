@@ -13,15 +13,22 @@ function AdminDashboard() {
     dispatch(fetchStats());
   }, [dispatch]);
 
+
   if (loading) return <p>Loading stats...</p>;
   if (error) return <p>Error loading stats 😔</p>;
   if (!data) return null;
 
-  // const { weeklyPatients, weeklyRevenue, weeklyAppointments } = data;
   const weeklyPatients = data.results.total;
   const weeklyRevenue = data.revenue.total;
   const weeklyAppointments = data.appointments.total
   console.log("data", data);
+
+  const calculateChange = (current, previous) => {
+  if (!previous || previous === 0) return 0; // avoid dividing by zero
+  const change = ((current - previous) / previous) * 100;
+  console.log('change.toFixed(2', change.toFixed(2))
+  return change.toFixed(2);
+};
 
   return (
     <div className="admin-dashboard">
@@ -62,6 +69,8 @@ function AdminDashboard() {
             {/* <h3>12,500</h3> */}
             <p>{weeklyPatients}</p>
             {/* <p>+4% vs last month</p> */}
+
+            
           </div>
           <div className="card">
             <p> Active Staff</p>
