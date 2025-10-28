@@ -9,8 +9,8 @@ const response = await axios.get("http://localhost:5000/weekly-stats",{
         Authorization: `Bearer ${token}`,
       },
 });
-  console.log('response', response.data.results.total)
-  return response.data.results.total;
+  console.log('response', response.data)
+  return response.data;
 } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data || "Failed to fetch stats");
 

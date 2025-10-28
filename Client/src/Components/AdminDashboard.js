@@ -17,9 +17,10 @@ function AdminDashboard() {
   if (error) return <p>Error loading stats 😔</p>;
   if (!data) return null;
 
-  const { weeklyPatients, weeklyRevenue, weeklyAppointments } = data;
+  // const { weeklyPatients, weeklyRevenue, weeklyAppointments } = data;
+  const weeklyPatients = data.results.total;
+  const weeklyRevenue = data.revenue.total
   console.log("data", data);
-  console.log('weeklyPatients?.length || 0', weeklyPatients?.length )
 
   return (
     <div className="admin-dashboard">
@@ -58,7 +59,7 @@ function AdminDashboard() {
           <div className="card">
             <p> Total Patients</p>
             {/* <h3>12,500</h3> */}
-            <p>{data}</p>
+            <p>{weeklyPatients}</p>
             {/* <p>+4% vs last month</p> */}
           </div>
           <div className="card">
@@ -68,20 +69,21 @@ function AdminDashboard() {
           </div>
           <div className="card">
             <p> Revenue</p>
+            <h3>R{weeklyRevenue}</h3>
             {/* <h3>$1.28M</h3> */}
-            <h3>
+            {/* <h3>
               R{" "}
               {weeklyRevenue
                 ?.reduce((sum, row) => sum + row.total_revenue, 0)
                 .toLocaleString()}
-            </h3>
+            </h3> */}
 
             <p>+4% YoY</p>
           </div>
           <div className="card">
             <p> Active Appointments</p>
             {/* <h3>1.067</h3> */}
-            <p>{weeklyAppointments?.length || 0}</p>
+            {/* <p>{weeklyAppointments?.length || 0}</p>   */}
 
             {/* <p>Today: 142</p> */}
           </div>
