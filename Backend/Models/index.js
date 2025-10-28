@@ -152,6 +152,7 @@ Claim.belongsTo(medicalAid, {foreignKey: "medical_aid_id"})
 medicalAid.hasMany(Claim, { foreignKey: "medical_aid_id"})
 
 module.exports = {
+  // sequelize,
   User,
   DoctorModel,
   NurseModel,

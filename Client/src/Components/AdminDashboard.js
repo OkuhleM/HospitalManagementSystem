@@ -1,31 +1,24 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../Assets/Logo.png";
 import "../Styling/AdminDashboard.css";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchStats } from "../Redux/StatsSlice";
 
 function AdminDashboard() {
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state.stats);
 
-const [stats, setStates] = useState({
-   patients: { total: 0, change: 0 },
-    staff: { active: 0, onDuty: 0 },
-    revenue: { amount: 0, change: 0 },
-    appointments: { total: 0, today: 0 },
-})
+  useEffect(() => {
+    dispatch(fetchStats());
+  }, [dispatch]);
 
-useEffect(()=>{
+  if (loading) return <p>Loading stats...</p>;
+  if (error) return <p>Error loading stats 😔</p>;
+  if (!data) return null;
 
-  const fetchStats = async => {
-    try{
-      const response = axios('http://localhost:5000/weekly-stats')
-      
-
-    } catch (error) {
-
-    }
-  }
-
-
-},[])
+  const { weeklyPatients, weeklyRevenue, weeklyAppointments } = data;
+  console.log("data", data);
 
   return (
     <div className="admin-dashboard">
@@ -35,7 +28,7 @@ useEffect(()=>{
           <h2>MedicaHub</h2>
         </div>
 
-         <div className="nav-actions">
+        <div className="nav-actions">
           <input
             type="search"
             placeholder="🔍 Search across all modules..."
@@ -58,32 +51,41 @@ useEffect(()=>{
         </ul>
       </aside>
 
-        <main className="main-content">
+      <main className="main-content">
         <h1>Welcome, Admin 👋</h1>
         <div className="card-container">
           <div className="card">
             <p> Total Patients</p>
-            <h3>12,500</h3>
-             <p>+4% vs last month</p>
+            {/* <h3>12,500</h3> */}
+            <p>{weeklyPatients?.length || 0}</p>
+            <p>+4% vs last month</p>
           </div>
-           <div className="card">
+          <div className="card">
             <p> Active Staff</p>
             <h3>342</h3>
-           <p>on duty: 128</p>
+            <p>on duty: 128</p>
           </div>
-           <div className="card">
+          <div className="card">
             <p> Revenue</p>
-            <h3>$1.28M</h3>
-             <p>+4% YoY</p> 
-          </div>
-           <div className="card">
-            <p> Active Appointments</p>
-            <h3>1.067</h3>
-            <p>Today: 142</p>
-          </div>
-           </div>
-      </main>
+            {/* <h3>$1.28M</h3> */}
+            <h3>
+              R{" "}
+              {weeklyRevenue
+                ?.reduce((sum, row) => sum + row.total_revenue, 0)
+                .toLocaleString()}
+            </h3>
 
+            <p>+4% YoY</p>
+          </div>
+          <div className="card">
+            <p> Active Appointments</p>
+            {/* <h3>1.067</h3> */}
+            <p>{weeklyAppointments?.length || 0}</p>
+
+            {/* <p>Today: 142</p> */}
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

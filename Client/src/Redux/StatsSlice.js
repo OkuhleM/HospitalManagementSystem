@@ -1,10 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchStats = createAsyncThunk("stats/fetchStats", async () => {
-  const response = await axios.get("http://localhost:5000/weekly-stats");
-  console.log('response', response)
-  return response.data;
+export const fetchStats = createAsyncThunk("stats/fetchStats", async (_, thunkAPI) => {
+    try{
+    const token = localStorage.getItem("token");
+const response = await axios.get("http://localhost:5000/weekly-stats",{
+    headers: {
+        Authorization: `Bearer ${token}`,
+      },
+});
+  console.log('response', response.data.results.total)
+  return response.data.results.total;
+} catch (error) {
+        return thunkAPI.rejectWithValue(error.response?.data || "Failed to fetch stats");
+
+}
 });
 
 const statsSlice = createSlice({
