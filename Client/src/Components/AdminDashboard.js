@@ -19,6 +19,7 @@ function AdminDashboard() {
 
   const { weeklyPatients, weeklyRevenue, weeklyAppointments } = data;
   console.log("data", data);
+  console.log('weeklyPatients?.length || 0', weeklyPatients?.length )
 
   return (
     <div className="admin-dashboard">
@@ -57,8 +58,8 @@ function AdminDashboard() {
           <div className="card">
             <p> Total Patients</p>
             {/* <h3>12,500</h3> */}
-            <p>{weeklyPatients?.length || 0}</p>
-            <p>+4% vs last month</p>
+            <p>{data}</p>
+            {/* <p>+4% vs last month</p> */}
           </div>
           <div className="card">
             <p> Active Staff</p>
