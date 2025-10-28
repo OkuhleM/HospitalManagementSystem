@@ -13,9 +13,11 @@ const fetchWeeklyStats = async (req, res) => {
 
     const revenueStats = revenue[0] || revenue;
     console.log('revenue', revenue)
-    // const [appointments] = await dbConnection.query(
-    //   "CALL getWeeklyAppointments()",
-    // );
+
+    const [appointments] = await dbConnection.query(
+      "CALL getWeeklyAppointments()",
+    );
+    const appointmentsStats = appointments[0] || appointments
     // const [staff] = await dbConnection.query("CALL getActiveStaff()");
     console.log("patients,revenue,appointments", results);
     res.status(200).json({
@@ -26,6 +28,10 @@ const fetchWeeklyStats = async (req, res) => {
       revenue: {
         total: revenueStats.total_revenue || 0,
          change: revenueStats.week_number || 0,
+      },
+      appointments: {
+           total: appointmentsStats.total_appointments || 0,
+         change: appointmentsStats.week_number || 0,
       }
     });
   } catch (err) {

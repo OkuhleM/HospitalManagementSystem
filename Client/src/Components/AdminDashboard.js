@@ -19,7 +19,8 @@ function AdminDashboard() {
 
   // const { weeklyPatients, weeklyRevenue, weeklyAppointments } = data;
   const weeklyPatients = data.results.total;
-  const weeklyRevenue = data.revenue.total
+  const weeklyRevenue = data.revenue.total;
+  const weeklyAppointments = data.appointments.total
   console.log("data", data);
 
   return (
@@ -70,20 +71,13 @@ function AdminDashboard() {
           <div className="card">
             <p> Revenue</p>
             <h3>R{weeklyRevenue}</h3>
-            {/* <h3>$1.28M</h3> */}
-            {/* <h3>
-              R{" "}
-              {weeklyRevenue
-                ?.reduce((sum, row) => sum + row.total_revenue, 0)
-                .toLocaleString()}
-            </h3> */}
 
             <p>+4% YoY</p>
           </div>
           <div className="card">
             <p> Active Appointments</p>
             {/* <h3>1.067</h3> */}
-            {/* <p>{weeklyAppointments?.length || 0}</p>   */}
+            <p>{weeklyAppointments}</p>  
 
             {/* <p>Today: 142</p> */}
           </div>
