@@ -5,8 +5,8 @@ const { roleCheck } = require('../Middleware/roleMiddleware')
 
 const accountSettling = app => {
 app.post('/bills', authenticateToken, roleCheck(['admin']) , patientsBillings)
-app.get('/bills', authenticateToken, roleCheck(['receptionist']),getAllAccounts)
-app.get('/bills/:bill_id', authenticateToken, roleCheck(['receptionist']),getAPatientsAccount)
+app.get('/bills', authenticateToken, roleCheck(['receptionist','admin']),getAllAccounts)
+app.get('/bills/:bill_id', authenticateToken, roleCheck(['receptionist','admin']),getAPatientsAccount)
 
 }
 
