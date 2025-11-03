@@ -7,7 +7,7 @@ export const fetchBillings = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get("http://localhost:5000/bills")
-      console.log('data.data', data.data)
+      console.log('data.data', response.data.data)
       return response.data.data; // adjust depending on your backend response
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Error fetching billing data");
