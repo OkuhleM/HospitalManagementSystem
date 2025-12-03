@@ -5,10 +5,16 @@ import axios from "axios";
 export const fetchBillings = createAsyncThunk(
   "billings/fetchBillings",
   async (_, { rejectWithValue }) => {
+          const token = localStorage.getItem("token");
+
     try {
-      const response = await axios.get("http://localhost:5000/bills")
-      console.log('data.data', response.data.data)
-      return response.data.data; // adjust depending on your backend response
+    const response = await axios.get("http://localhost:5000/bills", {
+       headers: {
+          Authorization: `Bearer ${token}`,
+        },
+    })
+      console.log('response data', response.data.data)
+      // return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Error fetching billing data");
     }

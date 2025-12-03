@@ -48,7 +48,7 @@ const getAllAccounts = async (req, res) => {
   try {
     const accounts = await Billings.findAll({
        include: [
-    { model: PatientModel, as: 'Patient' },
+    { model: PatientModel, as: 'patient' },
     { model: medicalAid, as: 'medicalAid' }
   ]
     });
