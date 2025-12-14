@@ -49,12 +49,19 @@ const weeklyPatients = statsData?.results?.total || 0;
 const weeklyRevenue = statsData?.revenue?.total || 0;
 const weeklyAppointments = statsData?.appointments?.total || 0;
 
+const patientChange = Number(statsData?.results?.change ?? 0);
+console.log('patientsChange', patientChange)
+
   const calculateChange = (current, previous) => {
-    if (!previous || previous === 0) return 0; // avoid dividing by zero
+    if (!previous || previous === 0) return 0; 
     const change = ((current - previous) / previous) * 100;
     console.log("change.toFixed(2", change.toFixed(2));
     return change.toFixed(2);
   };
+
+
+
+
 
   return (
     <div className="admin-dashboard">
@@ -94,7 +101,16 @@ const weeklyAppointments = statsData?.appointments?.total || 0;
             <p> Total Patients</p>
             {/* <h3>12,500</h3> */}
             <p>{weeklyPatients}</p>
-            {/* <p>+4% vs last month</p> */}
+            
+  <div
+    className={`stat-change ${
+      patientChange >= 0 ? "green" : "red"
+    }`}
+  >
+    {patientChange >= 0 ? "+" : ""}
+    {patientChange}% vs last month
+  </div>
+
           </div>
           <div className="card">
             <p> Active Staff</p>
@@ -105,15 +121,15 @@ const weeklyAppointments = statsData?.appointments?.total || 0;
             <p> Revenue</p>
             <h3>R{weeklyRevenue}</h3>
 
-            <p>+4% YoY</p>
+            <p>+4%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         YoY</p>
           </div>
           <div className="card">
             <p> Active Appointments</p>
-            {/* <h3>1.067</h3> */}
+            {/* <h3>1.067</h3> */}    
             <p>{weeklyAppointments}</p>
 
             {/* <p>Today: 142</p> */}
-          </div>
+          </div>                                      
         </div>
       </main>
 
@@ -122,21 +138,21 @@ const weeklyAppointments = statsData?.appointments?.total || 0;
         <table className="billing-table">
           <thead>
             <tr>
-              <th>Patient</th>
+              <th>Patient</th>                                                      
               <th>Amount (R)</th>
               <th>Status</th>
               <th>Date</th>
               <th>Medical Aid</th>
               <th>Actions</th>
             </tr>
-          </thead>
+          </thead>                                                                
           <tbody>
             {currentRecords.length > 0 ? (
               currentRecords.map((bill) => (
                 <tr key={bill.bill_id}>
                   <td>
                     {bill.Patient?.first_name} {bill.Patient?.last_name} <br />
-                    <small>{bill.Patient?.id_Number}</small>
+                    <small>{bill.Patient?.id_Number}</small>                                                                                                  
                   </td>
                   <td>{bill.amount}</td>
                   <td>{bill.status ? "Paid" : "Pending"}</td>
