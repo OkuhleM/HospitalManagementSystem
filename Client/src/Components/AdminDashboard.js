@@ -139,6 +139,12 @@ function AdminDashboard() {
         </div>
       </main>
 
+
+<section className="admissions-discharges">
+
+</section>
+      
+
       <div className="billing-dashboard">
         <h2>💸 Billing Overview</h2>
         <table className="billing-table">
@@ -161,7 +167,9 @@ function AdminDashboard() {
                     <small>{bill.Patient?.id_Number}</small>
                   </td>
                   <td>{bill.amount}</td>
-                  <td>{bill.status ? "Paid" : "Pending"}</td>
+                  <td> <span className={`status-pill ${bill.status ? "paid" : "pending"}`}>
+    {bill.status ? "Paid" : "Pending"}
+  </span></td>
                   <td>{new Date(bill.billing_date).toLocaleDateString()}</td>
                   <td>
                     {bill.medicalAid
