@@ -65,10 +65,24 @@
 }
 
 .side-nav {
-  grid-row: 2 / -1;
+  /* grid-row: 2 / 3; */
   background-color: #18283b;
   color: white;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+
+   height: 100%;
+  width: 25%;
+  position: fixed;
+  /* font-weight: bolder; */
+  /* z-index: 1; */
+  top: 0;
+  left: 0;
+  /* background-color: #46bac4; */
+  /* color: #000; */
+  overflow-x: hidden;
+  padding: 25px;
+  /* gap: 20px; */
+  grid-row: 2 / 3;
 }
 
 .side-nav ul {
