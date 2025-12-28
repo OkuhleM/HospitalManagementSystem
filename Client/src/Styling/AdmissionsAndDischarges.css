@@ -1,0 +1,58 @@
+.admissions-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  /* background-color: #f9f9f9; */
+  /* flex-wrap: wrap; */
+  border-radius: 20px;
+  color: #111;
+}
+
+.panel {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  /* flex: 1 1 400px; */
+  min-width: 300px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.panel-header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.time-filters button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.time-filters button:hover {
+  background-color: #d0d0d0;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+.panel-body {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty-state {
+  color: #aaa;
+  font-style: italic;
+}

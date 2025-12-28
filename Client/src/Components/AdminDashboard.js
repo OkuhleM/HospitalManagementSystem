@@ -4,6 +4,7 @@ import "../Styling/AdminDashboard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStats } from "../Redux/StatsSlice";
 import { fetchBillings } from "../Redux/Features/Payments/BillingSlice";
+import AdmissionsAndDischarges from "./AdmissionsAndDischarges";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -139,7 +140,9 @@ function AdminDashboard() {
         </div>
       </main>
 
-
+<div>
+  <AdmissionsAndDischarges />
+</div>
 <section className="admissions-discharges">
 
 </section>
