@@ -141,9 +141,9 @@ function AdminDashboard() {
       </main>
 
 <div>
-  <AdmissionsAndDischarges />
 </div>
 <section className="admissions-discharges">
+  <AdmissionsAndDischarges />
 
 </section>
       

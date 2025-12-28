@@ -1,21 +1,22 @@
 .admin-dashboard {
   display: grid;
-  grid-template-columns: 250px auto;
-  grid-template-rows: 70px auto;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 70px 1fr;
   height: 100vh;
-  /* background-color: #f9f9fb;  */
+  background-color: #f9f9fb;
   font-family: "Poppins", sans-serif;
 }
-
 .top-nav {
   grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #0f1c2e;
   color: #fff;
   padding: 0 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .logo {
@@ -65,24 +66,11 @@
 }
 
 .side-nav {
-  /* grid-row: 2 / 3; */
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
   background-color: #18283b;
   color: white;
-  /* padding-top: 20px; */
-
-   height: 100%;
-  width: 25%;
-  position: fixed;
-  /* font-weight: bolder; */
-  /* z-index: 1; */
-  top: 0;
-  left: 0;
-  /* background-color: #46bac4; */
-  /* color: #000; */
-  overflow-x: hidden;
-  padding: 25px;
-  /* gap: 20px; */
-  grid-row: 2 / 3;
+  padding: 25px 0;
 }
 
 .side-nav ul {
@@ -107,6 +95,8 @@
 }
 
 .main-content {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
   padding: 30px;
   background-color: #f0f6fa;
   overflow-y: auto;
@@ -209,3 +199,4 @@
   background-color: #fff4e5;
   color: #b45309;
 }
+
