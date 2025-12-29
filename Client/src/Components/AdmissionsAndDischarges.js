@@ -8,17 +8,19 @@ function AdmissionsAndDischarges() {
     <div className='panel-header'>
 
 <h2>Admission And Discharges</h2>
-
 <div className="time-filters">
-            <button>previous</button>
+            <button className='btn'>previous</button>
             <p>1</p>
-            <button>next</button>
+            <button className='btn'>next</button>
           </div>
+</div>
+
+
             <div className="panel-body">
-          <h5>Place holder data</h5>
+          <h3>Place holder data</h3>
           <p className="empty-state">No data available</p>
         </div>
-    </div>
+    
 </div>
 <div className="panel appointments-panel">
         <div className="panel-header">
