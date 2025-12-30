@@ -48,9 +48,9 @@ function UserManagement() {
       </tr>
 
       <tr>
-        <td>Linda Park</td>
-        <td>lindap@medicore.org</td>
-        <td>Nurse</td>
+        <td>Christopher Brown</td>
+        <td>chrisbrown@medicore.org</td>
+        <td>Doctor</td>
         <td><span className="badge pending">Pending</span></td>
         <td>Yesterday</td>
         <td className="row-actions">
