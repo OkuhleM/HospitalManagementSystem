@@ -138,15 +138,13 @@ function AdminDashboard() {
             {/* <p>Today: 142</p> */}
           </div>
         </div>
-      </main>
 
-<div>
-</div>
+
 <section className="admissions-discharges">
   <AdmissionsAndDischarges />
 
 </section>
-      
+
 
       <div className="billing-dashboard">
         <h2>💸 Billing Overview</h2>
@@ -219,6 +217,8 @@ function AdminDashboard() {
           </button>
         </div>
       </div>
+      </main>      
+
     </div>
   );
 }
