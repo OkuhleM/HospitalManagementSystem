@@ -36,8 +36,8 @@ function UserManagement() {
     </thead>
     <tbody>
       <tr>
-        <td>Dr. Anita Howard</td>
-        <td>anita.howard@medicore.org</td>
+        <td>Dr. Zayn Malik</td>
+        <td>zain@hospital.com</td>
         <td>Physician</td>
         <td><span className="badge active">Active</span></td>
         <td>Today 09:24</td>
