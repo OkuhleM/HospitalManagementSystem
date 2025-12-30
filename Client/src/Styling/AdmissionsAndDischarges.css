@@ -1,20 +1,20 @@
 .admissions-container {
-    display: grid;
-    grid-template-columns: 600px 400px;
-    /* grid-template-rows: 70px auto; */
-    color: black;
-    gap: 2rem;
-    margin-top: 2rem;
-    padding: 1rem;
-    
+  display: grid;
+  grid-template-columns: 600px 500px;
+  /* grid-template-rows: 70px auto; */
+  color: black;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 20px;
 }
 
 .panel {
   background-color: #f0f6fa;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
-  
 }
 
 .panel-header {
@@ -28,17 +28,16 @@
   margin: 0;
 }
 
-.time-filters{
+.time-filters {
   display: flex;
   gap: 15px;
   align-items: center;
   flex-direction: row;
   padding: 0.4rem 0.8rem;
   cursor: pointer;
-  
 }
 
-.btn{
+.btn {
   cursor: pointer;
   background-color: #e0e0e0;
   border-radius: 15px;
@@ -52,16 +51,11 @@
 }
 
 .subheading {
-  font-size: 0.9rem;
+  font-size: 10px;
   color: #666;
   margin-top: 0.5rem;
 }
-/* .panel-body {
-  min-height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+
 .empty-state {
   color: #aaa;
   font-style: italic;
