@@ -1,0 +1,11 @@
+.management-container{
+    margin: 2rem 0;
+    background-color: #fff;
+}
+
+.management-header {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStats } from "../Redux/StatsSlice";
 import { fetchBillings } from "../Redux/Features/Payments/BillingSlice";
 import AdmissionsAndDischarges from "./AdmissionsAndDischarges";
+import UserManagement from "./UserManagement";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -143,6 +144,10 @@ function AdminDashboard() {
 <section className="admissions-discharges">
   <AdmissionsAndDischarges />
 
+</section>
+
+<section className="user-management">
+  <UserManagement />
 </section>
 
 
