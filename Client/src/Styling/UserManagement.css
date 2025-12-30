@@ -1,6 +1,9 @@
 .management-container{
-    margin: 2rem 0;
+    margin: 2rem 0;     
     background-color: #fff;
+    padding: 24px;
+  min-height: 100vh;
+  border-radius: 9px;
 }
 
 .management-header {
@@ -8,4 +11,91 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+}
+
+.management-header h2 {
+  margin: 0;
+  font-size: 20px;
+  /* color: var(--text-primary); */
+
+}
+
+.management-header p {
+  margin: 4px 0 0;
+  color: grey;
+  font-size: 12px;
+}
+
+.btn-management {
+   
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.tab {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+}
+
+.tab.active {
+  background: white;
+  border-color: #2563eb;
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  font-size: 13px;
+  color: #64748b;
+  padding-bottom: 12px;
+}
+
+.table td {
+  padding: 14px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+td{
+    font-size: 14px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.active {
+  background: #e6f9f0;
+  color: #0f9d58;
+}
+
+.badge.pending {
+  background: #fde68a;
+  color: #92400e;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
 }

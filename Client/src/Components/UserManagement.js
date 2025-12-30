@@ -5,21 +5,62 @@ function UserManagement() {
   return (
     <div className='management-container'>
         <div className='management-header'>
-            <h3>User Management
-                {/* <p>Manage accounts, roles and status</p> */}
-
-            </h3>
-                <button>+ Add User</button>
-                <button> Bulk Actions</button>
+             <div>
+      <h2>User Management</h2>
+      <p>Manage accounts, roles and status</p>
+    </div>
+                <div className="actions">
+      <button className="btn-management">+ Add User</button>
+      <button className="btn-management">Bulk Actions</button>
+    </div>
                 </div>
-            <div>
-                <input type='search'
-                placeholder='Search name, email, role...'
-                />
-                <button> Role: All</button>
-                <button>Status: Any</button>
-                <p>Table coming soon</p>
-            </div>
+             <div className="tabs">
+    <button className="tab active">All Users</button>
+    <button className="tab">Active</button>
+    <button className="tab">Pending</button>
+    <button className="tab">Deactivated</button>
+  </div>
+
+
+
+<table className="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Last Active</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dr. Anita Howard</td>
+        <td>anita.howard@medicore.org</td>
+        <td>Physician</td>
+        <td><span className="badge active">Active</span></td>
+        <td>Today 09:24</td>
+        <td className="row-actions">
+          <button className="btn-management">Edit</button>
+          <button className="btn-management">Deactivate</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Linda Park</td>
+        <td>lindap@medicore.org</td>
+        <td>Nurse</td>
+        <td><span className="badge pending">Pending</span></td>
+        <td>Yesterday</td>
+        <td className="row-actions">
+          <button className="btn-management">Approve</button>
+          <button className="btn-management">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
     </div>
   )
 }
