@@ -10,14 +10,14 @@ const fetchWeeklyStats = async (req, res) => {
     const [revenue] = await dbConnection.query(
       "CALL getWeeklyRevenue()"
     );
-
-    const revenueStats = revenue[0] || revenue;
+console.log('revenue', revenue)
+    const revenueStats = revenue.total_revenue || revenue;
     console.log('revenue', revenue)
 
-    const [appointments] = await dbConnection.query(
-      "CALL getWeeklyAppointments()",
-    );
-    const appointmentsStats = appointments[0] || appointments
+    // const [appointments] = await dbConnection.query(
+    //   "CALL getWeeklyAppointments()",
+    // );
+    const appointmentsStats = revenue.appointments || revenue.appointments
     // const [staff] = await dbConnection.query("CALL getActiveStaff()");
     console.log("patients,revenue,appointments", results);
     res.status(200).json({
