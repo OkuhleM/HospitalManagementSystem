@@ -81,21 +81,34 @@ function PatientsManagement() {
 
         <div className="card-management">
           <div className="management-header vertical">
-            <h2>Add / Edit User</h2>
-            <p>Create a new user or update details</p>
+            <h2>New Patient Registration</h2>
+            <p>Capture essential details</p>
           </div>
 
           <form className="form">
             <div className="form-grid">
               <div className="form-group">
                 <label>Full Name</label>
-                <input type="text" placeholder="e.g. John Smith" />
+                <input type="text" placeholder="e.g. John doe" />
               </div>
 
               <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="name@hospital.org" />
+                <label>Patient ID
+</label>
+                <input type="email" placeholder="Auto-generated" />
               </div>
+            </div>
+            <div className='grid-row'>
+                <label> Age</label>
+                <input type='number' placeholder='32' />
+                <label>Gender</label>
+                <selcet>
+                    <option>Select:</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                </selcet>
+                <label>Phone</label>
+                <input type='text' placeholder='011 2345 879' />
             </div>
 
             <div className="form-grid">
