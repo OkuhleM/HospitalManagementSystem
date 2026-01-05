@@ -6,6 +6,7 @@ import { fetchStats } from "../Redux/StatsSlice";
 import { fetchBillings } from "../Redux/Features/Payments/BillingSlice";
 import AdmissionsAndDischarges from "./AdmissionsAndDischarges";
 import UserManagement from "./UserManagement";
+import PatientsManagement from "./PatientsManagement";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -148,6 +149,10 @@ function AdminDashboard() {
 
 <section className="user-management">
   <UserManagement />
+</section>
+
+<section>
+  <PatientsManagement />
 </section>
 
 
