@@ -42,30 +42,28 @@ function PatientsManagement() {
           </thead>
           <tbody>
             <tr>
-              <td>Dr. Zayn Malik</td>
-              <td>zain@hospital.com</td>
-              <td>Physician</td>
+              <td>Siyanda Bongani</td>
+              <td>97122412370854</td>
+              <td>Dr Zayn Malik</td>
               <td>
-                <span className="badge active">Active</span>
+                <span className="badge active">In patient</span>
               </td>
-              <td>Today 09:24</td>
+              
               <td className="row-actions">
-                <button className="btn-management">Edit</button>
-                <button className="btn-management">Deactivate</button>
+                <button className="btn-management">Details</button>
+                {/* <button className="btn-management">Deactivate</button> */}
               </td>
             </tr>
 
             <tr>
-              <td>Christopher Brown</td>
-              <td>chrisbrown@medicore.org</td>
-              <td>Doctor</td>
+              <td>Mira Chen</td>
+              <td>5810091237967</td>
+              <td>Dr Christopher Brown</td>
               <td>
-                <span className="badge pending">Pending</span>
+                <span className="badge pending">Out Patient</span>
               </td>
-              <td>Yesterday</td>
               <td className="row-actions">
-                <button className="btn-management">Approve</button>
-                <button className="btn-management">Delete</button>
+                <button className="btn-management">Details</button>
               </td>
             </tr>
           </tbody>
