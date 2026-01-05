@@ -98,24 +98,32 @@ function PatientsManagement() {
                 <input type="email" placeholder="Auto-generated" />
               </div>
             </div>
-            <div className='grid-row'>
+            <div className='form-grid'>
+                <div className='form-group'>
+
                 <label> Age</label>
                 <input type='number' placeholder='32' />
+                </div>
+            <div className='form-group'>
                 <label>Gender</label>
-                <selcet>
+                <select>
                     <option>Select:</option>
                     <option>Female</option>
                     <option>Male</option>
-                </selcet>
+                </select>
+            </div>
+            <div className='form-group'>
+
                 <label>Phone</label>
                 <input type='text' placeholder='011 2345 879' />
+            </div>
             </div>
 
             <div className="form-grid">
               <div className="form-group">
-                <label>Role</label>
+                <label>Primary Doctor</label>
                 <select>
-                  <option>Select role</option>
+                  <option>Choose doctor</option>
                   <option>Admin</option>
                   <option>Nurse</option>
                   <option>Doctor</option>
@@ -125,9 +133,9 @@ function PatientsManagement() {
               </div>
 
               <div className="form-group">
-                <label>Status</label>
+                <label>Department</label>
                 <select>
-                  <option>Active</option>
+                  <option>Cardiology</option>
                   <option>Pending</option>
                   <option>Deactivated</option>
                 </select>
@@ -135,16 +143,16 @@ function PatientsManagement() {
             </div>
 
             <div className="form-group">
-              <label>Notes</label>
+              <label>History / Notes</label>
               <textarea placeholder="Additional notes..." />
             </div>
 
             <div className="form-actions">
               <button type="submit" className="btn-primary">
-                Save User
+                Register Patient
               </button>
               <button type="button" className="btn-reset">
-                Reset
+                Clear
               </button>
             </div>
           </form>
